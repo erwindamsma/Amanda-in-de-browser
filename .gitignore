@@ -2,7 +2,7 @@
 ## Extra excluded
 #################
 
-.idea/
+.idea/*
 
 #################
 ## Eclipse
