@@ -10,7 +10,7 @@
         <link rel="icon" href="../../favicon.ico">
 
         <title>Static Top Navbar Example for Bootstrap</title>
-        
+
         <!-- Bootstrap core CSS -->
         <link href="bootstrap/bootstrap.css" rel="stylesheet">
         <!-- Custom styles -->
@@ -23,7 +23,7 @@
         ?>
 
         <div class="container">
-            <? include "AmandaJS/AmandaJS.php" ?>
+            <?php include "AmandaJS/AmandaJS.php"; ?>
         </div>
 
         <!-- Bootstrap core JavaScript
