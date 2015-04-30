@@ -2,6 +2,7 @@
 ## Extra excluded
 #################
 
+.idea/
 
 #################
 ## Eclipse
@@ -219,4 +220,3 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
-
