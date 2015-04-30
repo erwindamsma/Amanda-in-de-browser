@@ -10,9 +10,7 @@
         <link rel="icon" href="../../favicon.ico">
 
         <title>Static Top Navbar Example for Bootstrap</title>
-
-        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-
+        
         <!-- Bootstrap core CSS -->
         <link href="bootstrap/bootstrap.css" rel="stylesheet">
         <!-- Custom styles -->
