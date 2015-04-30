@@ -1,8 +1,9 @@
 #################
-## Extra excluded
+## PHPStorm
 #################
 
-.idea/*
+.idea/php.xml
+.idea/workspace.xml
 
 #################
 ## Eclipse

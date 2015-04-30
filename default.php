@@ -23,9 +23,7 @@
         ?>
 
         <div class="container">
-            <?php
-                include "AmandaJS/AmandaJS.php"
-            ?>
+            <? include "AmandaJS/AmandaJS.php" ?>
         </div>
 
         <!-- Bootstrap core JavaScript
