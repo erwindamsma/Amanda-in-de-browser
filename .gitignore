@@ -1,11 +1,4 @@
 #################
-## PHPStorm
-#################
-
-.idea/php.xml
-.idea/workspace.xml
-
-#################
 ## Eclipse
 #################
 
@@ -221,3 +214,10 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+#################
+## PHPStorm
+#################
+
+.idea/php.xml
+.idea/workspace.xml
