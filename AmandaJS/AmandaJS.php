@@ -114,7 +114,7 @@
     </div>
 
     
-    <div class="emscripten_border" style="display: none;">
+    <div class="emscripten_border">
       <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
     </div>
     <textarea id="output" rows="8"></textarea>
