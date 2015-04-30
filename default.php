@@ -20,6 +20,8 @@
 
         <?php
             include "Shared/navbar.php";
+
+            include "AmandaJS/AmandaJS.php"
         ?>
 
         <div class="container">
