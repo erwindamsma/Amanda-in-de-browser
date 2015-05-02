@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Emscripten-Generated Code</title>
-    <link href="AmandaJS.css" rel="stylesheet">
   </head>
   <body>
     <div class="spinner" id='spinner'></div>
