@@ -66,12 +66,31 @@ canvas.emscripten { border: 0px none; }
 
 #output {
     width: 100%;
-    height: 200px;
     margin: 0 auto;
     margin-top: 10px;
-    display: block;
-    background-color: black;
+    background-color: #586B73;
     color: white;
     font-family: 'Lucida Console', Monaco, monospace;
     outline: none;
+}
+#functions {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+    font-family: 'Lucida Console', Monaco, monospace;
+    outline: none;
+}
+#input {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+    font-family: 'Lucida Console', Monaco, monospace;
+    outline: none;
+}
+.consoleButtons {
+    margin-top: 10px;
+    width: 100%;
+}
+#amandaTabs{
+    margin-top: 10px;
 }
