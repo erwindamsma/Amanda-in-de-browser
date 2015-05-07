@@ -15,6 +15,11 @@
         <link href="bootstrap/bootstrap.css" rel="stylesheet">
         <!-- Custom styles -->
         <link href="style.css" rel="stylesheet">
+
+        <!-- Bootstrap core JavaScript
+        Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="bootstrap/bootstrap.js"></script>
     </head>
     <body>
 
@@ -26,9 +31,5 @@
             <?php include "AmandaJS/AmandaJS.php"; ?>
         </div>
 
-        <!-- Bootstrap core JavaScript
-        Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="bootstrap/bootstrap.js"></script>
     </body>
 </html>

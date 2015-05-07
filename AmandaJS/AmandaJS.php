@@ -5,6 +5,22 @@
 
 <div class="row">
     <div class="col-md-12">
+        <div class="btn-group" style="margin-right: 10px">
+            <button class="btn btn-default"><span class="glyphicon glyphicon-file"></span></button>
+            <button class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span></button>
+            <button class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk"></span> </button>
+        </div>
+        <div class="btn-group" style="margin-right: 10px">
+            <button class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span></button>
+            <button class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></button>
+        </div>
+        <button class="btn btn-default" style="margin-right: 10px" onclick="cla">Timing</button>
+        <div class="btn-group">
+            <button class="btn btn-default">Functions</button>
+            <button class="btn btn-default">Operators</button>
+            <button class="btn btn-default">About</button>
+        </div>
+
         <textarea id="functions" class="form-control" rows="12"></textarea>
     </div>
 </div>
