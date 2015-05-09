@@ -3,6 +3,7 @@
 <div class="spinner" id='spinner'></div>
 <div class="emscripten" id="status">Downloading...</div>
 
+<!--Buttons at the top-->
 <div class="row">
     <div class="col-md-12">
         <div class="btn-group" style="margin-right: 10px">
@@ -20,11 +21,17 @@
             <button class="btn btn-default">Operators</button>
             <button class="btn btn-default">About</button>
         </div>
+    </div>
+</div>
 
+<!--Functions textarea-->
+<div class="row">
+    <div class="col-md-12">
         <textarea id="functions" class="form-control" rows="12"></textarea>
     </div>
 </div>
 
+<!--Console, Error list and Graphic-->
 <div class="row">
     <div class="col-md-12">
         <div role="tabpanel" id="amandaTabs">
@@ -112,4 +119,5 @@
     };
   };
 </script>
+
 <script async type="text/javascript" src="AmandaJS/AmandaJS.js"></script>
