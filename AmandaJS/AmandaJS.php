@@ -46,7 +46,7 @@
                 <div role="tabpanel" class="tab-pane active" id="console">
                     <div class="row">
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="input">
+                            <input type="text" class="form-control" id="input" onkeypress="submitConsoleInput(this.value)">
                             <textarea id="output" class="form-control" rows="8" readonly></textarea>
                         </div>
                         <div class="col-md-2">
@@ -61,6 +61,14 @@
         </div>
     </div>
 </div>
+
+<script type='text/javascript'>
+    function submitConsoleInput($value){
+        if (event.keyCode == 13) {
+
+        }
+    }
+</script>
 
 <script type='text/javascript'>
   var statusElement = document.getElementById('status');

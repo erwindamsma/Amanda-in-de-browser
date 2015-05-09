@@ -1941,42 +1941,9 @@ function copyTempDouble(ptr) {
         }},default_tty_ops:{get_char:function (tty) {
           if (!tty.input.length) {
             var result = null;
-            if (ENVIRONMENT_IS_NODE) {
-              // we will read data by chunks of BUFSIZE
-              var BUFSIZE = 256;
-              var buf = new Buffer(BUFSIZE);
-              var bytesRead = 0;
-  
-              var fd = process.stdin.fd;
-              // Linux and Mac cannot use process.stdin.fd (which isn't set up as sync)
-              var usingDevice = false;
-              try {
-                fd = fs.openSync('/dev/stdin', 'r');
-                usingDevice = true;
-              } catch (e) {}
-  
-              bytesRead = fs.readSync(fd, buf, 0, BUFSIZE, null);
-  
-              if (usingDevice) { fs.closeSync(fd); }
-              if (bytesRead > 0) {
-                result = buf.slice(0, bytesRead).toString('utf-8');
-              } else {
-                result = null;
-              }
-  
-            } else if (typeof window != 'undefined' &&
-              typeof window.prompt == 'function') {
-              // Browser.
-              result = window.prompt('Input: ');  // returns null on cancel
-              if (result !== null) {
-                result += '\n';
-              }
-            } else if (typeof readline == 'function') {
-              // Command line.
-              result = readline();
-              if (result !== null) {
-                result += '\n';
-              }
+            result = window.prompt('Input: ');  // returns null on cancel
+            if (result !== null) {
+              result += '\n';
             }
             if (!result) {
               return null;
