@@ -15,7 +15,7 @@
             <button class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span></button>
             <button class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></button>
         </div>
-        <button class="btn btn-default" style="margin-right: 10px" onclick="cla">Timing</button>
+        <button class="btn btn-default" style="margin-right: 10px">Timing</button>
         <div class="btn-group">
             <button class="btn btn-default">Functions</button>
             <button class="btn btn-default">Operators</button>
