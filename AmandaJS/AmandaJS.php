@@ -15,7 +15,7 @@
             <button class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span></button>
             <button class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></button>
         </div>
-        <button class="btn btn-default" style="margin-right: 10px">Timing</button>
+        <button class="btn btn-default" style="margin-right: 10px" onclick="toggleTime(); $(this).toggleClass('active').toggleClass('btn-success')">Timing</button>
         <div class="btn-group">
             <button class="btn btn-default">Functions</button>
             <button class="btn btn-default">Operators</button>
@@ -55,8 +55,12 @@
                         </div>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="errorlist"></div>
-                <div role="tabpanel" class="tab-pane" id="graphic"></div>
+                <div role="tabpanel" class="tab-pane" id="errorlist">
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="graphic">
+                    <h2>Graphic is not (yet) implemented.</h2>
+                </div>
             </div>
         </div>
     </div>
@@ -75,6 +79,12 @@
                 [$value]); // arguments
 
         }
+    }
+    function toggleTime(){
+        Module.ccall('Interpret', // name of C function
+            'void', // return type
+            ['string'], // argument types
+            ['time']); // arguments
     }
 </script>
 

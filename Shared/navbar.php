@@ -16,7 +16,7 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#signup" data-toggle="modal" data-target=".bs-modal-sm">Login</a></li>
+                <li><a href="#" data-toggle="modal" data-target=".bs-modal-sm">Login</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
