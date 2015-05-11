@@ -64,7 +64,15 @@
 
 <script type='text/javascript'>
     function submitConsoleInput($value){
+
         if (event.keyCode == 13) {
+            document.getElementById("input").value = "";
+            Module.print("> "+$value);
+
+            Module.ccall('Interpret', // name of C function
+                'void', // return type
+                ['string'], // argument types
+                [$value]); // arguments
 
         }
     }
