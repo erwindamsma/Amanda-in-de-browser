@@ -103,24 +103,26 @@
 
             switch ($value){
                 case 'time':
-                    toggleTime()
+                    toggleTime();
                     break;
                 default:
-                    Module.ccall('Interpret', // name of C function
-                        'void', // return type
-                        ['string'], // argument types
-                        [$value]); // arguments
+                    interpret($value);
                     break;
             }
             
         }
     }
+
     function toggleTime(){
+        interpret('time');
+        $("#toggleTime").toggleClass('active').toggleClass('btn-success');
+    }
+
+    function interpret(value){
         Module.ccall('Interpret', // name of C function
             'void', // return type
             ['string'], // argument types
-            ['time']); // arguments
-        $("#toggleTime").toggleClass('active').toggleClass('btn-success')
+            [value]); // arguments
     }
 </script>
 
