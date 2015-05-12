@@ -27,7 +27,7 @@
 <!--Functions textarea-->
 <div class="row">
     <div class="col-md-12">
-        <textarea id="functions" class="form-control" rows="12"></textarea>
+        <textarea id="functions" class="form-control" rows="12" onblur="loadTempFile();"></textarea>
     </div>
 </div>
 
@@ -67,6 +67,28 @@
 </div>
 
 <script type='text/javascript'>
+    function loadTempFile()
+    {
+        filepath = "/tmp";
+        filename = "tmp.ama";
+
+        fileData = document.getElementById("functions").value;
+
+        if(FS.findObject(filepath + "/" + filename) != null) FS.unlink(filepath + "/" + filename);//Remove the tmp file
+        FS.createDataFile(filepath, filename, fileData, true, true, true); //Create the tmp.ama file
+
+        //Load /tmp/tmp.ama in AmandaJs
+        Module.ccall('Load', // name of C function
+            'bool', // return type
+            ['string'], // argument types
+            [filepath + "/" + filename]); // arguments
+    }
+
+    function loadPersistentFile($url)
+    {
+
+    }
+
     function submitConsoleInput($value){
 
         if (event.keyCode == 13) {
