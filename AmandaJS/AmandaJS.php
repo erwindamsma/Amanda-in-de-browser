@@ -22,7 +22,7 @@
             <button class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span></button>
             <button class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></button>
         </div>
-        <button class="btn btn-default" style="margin-right: 10px" onclick="toggleTime(); $(this).toggleClass('active').toggleClass('btn-success')">Timing</button>
+        <button id="toggleTime" class="btn btn-default" style="margin-right: 10px" onclick="toggleTime()">Timing</button>
         <div class="btn-group">
             <button class="btn btn-default">Functions</button>
             <button class="btn btn-default">Operators</button>
@@ -97,16 +97,22 @@
     }
 
     function submitConsoleInput($value){
-
         if (event.keyCode == 13) {
             document.getElementById("input").value = "";
             Module.print("> "+$value);
 
-            Module.ccall('Interpret', // name of C function
-                'void', // return type
-                ['string'], // argument types
-                [$value]); // arguments
-
+            switch ($value){
+                case 'time':
+                    toggleTime()
+                    break;
+                default:
+                    Module.ccall('Interpret', // name of C function
+                        'void', // return type
+                        ['string'], // argument types
+                        [$value]); // arguments
+                    break;
+            }
+            
         }
     }
     function toggleTime(){
@@ -114,6 +120,7 @@
             'void', // return type
             ['string'], // argument types
             ['time']); // arguments
+        $("#toggleTime").toggleClass('active').toggleClass('btn-success')
     }
 </script>
 
