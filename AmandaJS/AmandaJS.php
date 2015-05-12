@@ -45,7 +45,7 @@
             <!-- Tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#console" role="tab" data-toggle="tab">Console</a></li>
-                <li role="presentation"><a href="#errorlist" role="tab" data-toggle="tab">Error ist</a></li>
+                <li role="presentation"><a href="#errorlist" role="tab" data-toggle="tab">Error list</a></li>
                 <li role="presentation"><a href="#graphic" role="tab" data-toggle="tab">Graphic</a></li>
             </ul>
             <!-- Panes -->
