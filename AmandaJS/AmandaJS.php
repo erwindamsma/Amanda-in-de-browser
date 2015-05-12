@@ -2,8 +2,8 @@
 
 <link rel="stylesheet" href="codemirror/codemirror.css">
 <link rel="stylesheet" href="codemirror/addon/display/fullscreen.css">
-<link rel="stylesheet" href="codemirror/theme/night.css">
 <script src="codemirror/codemirror.js"></script>
+<!--<link rel="stylesheet" href="codemirror/theme/night.css">-->
 <!--<script src="codemirror/mode/amanda/amanda.js"></script>-->
 <script src="codemirror/addon/display/fullscreen.js"></script>
 
@@ -74,12 +74,12 @@
 </div>
 
 <script type='text/javascript'>
-    function loadTempFile()
+    function loadTempFile($fileContent)
     {
         filepath = "/tmp";
         filename = "tmp.ama";
 
-        fileData = document.getElementById("functions").value;
+        fileData = $fileContent;
 
         if(FS.findObject(filepath + "/" + filename) != null) FS.unlink(filepath + "/" + filename);//Remove the tmp file
         FS.createDataFile(filepath, filename, fileData, true, true, true); //Create the tmp.ama file
@@ -194,7 +194,11 @@
                 if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
             }
         }
+
     });
+
+    //Add onBlur event to the editor, when lost focus load the temp file.
+    editor.on("blur",function(instance){loadTempFile(instance.getValue());});
 </script>
 
 <script async type="text/javascript" src="AmandaJS/AmandaJS.js"></script>
