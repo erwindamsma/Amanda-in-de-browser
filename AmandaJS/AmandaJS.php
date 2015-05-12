@@ -1,5 +1,12 @@
 <link href="AmandaJS/AmandaJS.css" rel="stylesheet">
 
+<link rel="stylesheet" href="codemirror/codemirror.css">
+<link rel="stylesheet" href="codemirror/addon/display/fullscreen.css">
+<link rel="stylesheet" href="codemirror/theme/night.css">
+<script src="codemirror/codemirror.js"></script>
+<!--<script src="codemirror/mode/amanda/amanda.js"></script>-->
+<script src="codemirror/addon/display/fullscreen.js"></script>
+
 <div class="spinner" id='spinner'></div>
 <div class="emscripten" id="status">Downloading...</div>
 
@@ -166,6 +173,21 @@
       if (text) Module.printErr('[post-exception status] ' + text);
     };
   };
+</script>
+
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("functions"), {
+        lineNumbers: true,
+        theme: "night",
+        extraKeys: {
+            "F11": function(cm) {
+                cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+            },
+            "Esc": function(cm) {
+                if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+            }
+        }
+    });
 </script>
 
 <script async type="text/javascript" src="AmandaJS/AmandaJS.js"></script>
