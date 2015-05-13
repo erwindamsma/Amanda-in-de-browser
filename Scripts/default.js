@@ -139,7 +139,6 @@ function submitConsoleInput($value){
                 commandsArrayIndex++;
             }
             input.val(commandsArray[commandsArrayIndex]);
-            input.caretToEnd();
             break;
     }
 }
