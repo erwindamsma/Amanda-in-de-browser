@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-md-2">
                             <input class="btn btn-default consoleButtons" type="button" value="Stop" disabled>
-                            <input class="btn btn-default consoleButtons" type="button" value="Clear" disabled>
+                            <input class="btn btn-default consoleButtons" type="button" value="Clear" onclick="$('#output').val('');">
                         </div>
                     </div>
                 </div>
