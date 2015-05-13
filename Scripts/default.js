@@ -107,21 +107,40 @@ function saveEditorToFile()
 
 }
 
-
+var commandsArray = new Array();
+var commandsArrayIndex = 0;
 function submitConsoleInput($value){
-    if (event.keyCode == 13) {
-        document.getElementById("input").value = "";
-        Module.print("> "+$value);
+    var input = $('#input');
+    switch (event.keyCode) {
+        case 13: //enter
+            document.getElementById("input").value = "";
+            Module.print("> " + $value);
+            commandsArray.push($value);
+            commandsArrayIndex = commandsArray.length;
 
-        switch ($value){
-            case 'time':
-                toggleTime();
-                break;
-            default:
-                interpret($value);
-                break;
-        }
-
+            switch ($value) {
+                case 'time':
+                    toggleTime();
+                    break;
+                default:
+                    interpret($value);
+                    break;
+            }
+            break;
+        case 38: //arrow up
+            if (commandsArrayIndex > 0){
+                commandsArrayIndex--;
+            }
+            input.val(commandsArray[commandsArrayIndex]);
+            input.caretToEnd();
+            break;
+        case 40: //arrow down
+            if (commandsArrayIndex < commandsArray.length){
+                commandsArrayIndex++;
+            }
+            input.val(commandsArray[commandsArrayIndex]);
+            input.caretToEnd();
+            break;
     }
 }
 

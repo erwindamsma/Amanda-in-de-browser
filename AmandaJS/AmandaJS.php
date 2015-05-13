@@ -3,13 +3,15 @@
 <link rel="stylesheet" href="codemirror/addon/display/fullscreen.css">
 
 <!--Additional JS-->
-<script type='text/javascript' src="default.js"></script>
+<script type='text/javascript' src="Scripts/default.js"></script>
 
 <script src="codemirror/codemirror.js"></script>
 <!--<link rel="stylesheet" href="codemirror/theme/night.css">-->
 <!--<script src="codemirror/mode/amanda/amanda.js"></script>-->
 <script src="codemirror/addon/display/fullscreen.js"></script>
 
+<!---->
+<script src="Scripts/jquery.caret.js"></script>
 
 <div class="spinner" id='spinner'></div>
 <div class="emscripten" id="status">Downloading...</div>
@@ -57,7 +59,7 @@
                 <div role="tabpanel" class="tab-pane active" id="console">
                     <div class="row">
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="input" onkeypress="submitConsoleInput(this.value)">
+                            <input type="text" class="form-control" id="input" onkeyup="submitConsoleInput(this.value)">
                             <textarea id="output" class="form-control" rows="8" readonly></textarea>
                         </div>
                         <div class="col-md-2">
@@ -78,7 +80,7 @@
 </div>
 
 <!--Amanda js code which emscripten normally puts in this page itself-->
-<script type='text/javascript' src="AmandaJS/AmandaJSpage.js"></script>
+<script type='text/javascript' src="Scripts/AmandaJSpage.js"></script>
 
 <!-- The dropbox api -->
 <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="idcug02opq4uc1h"></script>
