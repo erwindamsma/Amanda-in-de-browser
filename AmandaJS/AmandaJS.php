@@ -11,7 +11,6 @@
 <script src="codemirror/addon/display/fullscreen.js"></script>
 
 
-
 <div class="spinner" id='spinner'></div>
 <div class="emscripten" id="status">Downloading...</div>
 
@@ -82,8 +81,9 @@
 <script type='text/javascript' src="AmandaJS/AmandaJSpage.js"></script>
 
 <!-- The dropbox api -->
-<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="idcug02opq4uc1h"></script></script>
+<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="idcug02opq4uc1h"></script>
 
+<!-- Codemirror (for the functions textarea) -->
 <script>
     var functionEditor = CodeMirror.fromTextArea(document.getElementById("functions"), {
         lineNumbers: true,
@@ -104,6 +104,8 @@
     functionEditor.on("change",function(instance){editorHasChanges = true;});
 </script>
 
+<!-- Emscripten compiled amanda code -->
 <script async type="text/javascript" src="AmandaJS/AmandaJS.js"></script>
 
-<iframe id="downloader" style='display:none;'></iframe><!-- This iframe is used to download files -->
+<!-- This iframe is used to download files -->
+<iframe id="downloader" style='display:none;'></iframe>
