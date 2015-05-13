@@ -16,7 +16,6 @@
         <div class="btn-group" style="margin-right: 10px">
             <button class="btn btn-default" onclick="clearEditor()"><span class="glyphicon glyphicon-file"></span></button>
             <button class="btn btn-default" onclick="loadDropboxFile();"><span class="glyphicon glyphicon-folder-open"></span></button>
-            <iframe id="downloader" style='display:none;'></iframe><!-- This iframe is used to download files -->
             <button class="btn btn-default" onclick="saveEditorToFile()"><span class="glyphicon glyphicon-floppy-disk"></span> </button>
         </div>
         <div class="btn-group" style="margin-right: 10px">
@@ -330,3 +329,4 @@
 </script>
 
 <script async type="text/javascript" src="AmandaJS/AmandaJS.js"></script>
+<iframe id="downloader" style='display:none;'></iframe><!-- This iframe is used to download files -->
