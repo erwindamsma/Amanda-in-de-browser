@@ -15,7 +15,7 @@
     <div class="col-md-12">
         <div class="btn-group" style="margin-right: 10px">
             <button class="btn btn-default" onclick="clearEditor()"><span class="glyphicon glyphicon-file"></span></button>
-            <button class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span></button>
+            <button class="btn btn-default" onclick="loadDropboxFile();"><span class="glyphicon glyphicon-folder-open"></span></button>
             <iframe id="downloader" style='display:none;'></iframe><!-- This iframe is used to download files -->
             <button class="btn btn-default" onclick="saveEditorToFile()"><span class="glyphicon glyphicon-floppy-disk"></span> </button>
         </div>
@@ -96,7 +96,7 @@
     }
 
 
-    function loadPersistentFile($url)
+    function loadDropboxFile()
     {
         options = {
 
@@ -104,13 +104,18 @@
             success: function(files) {
                 alert("Here's the file link: " + files[0].link)
                 $.ajax({
-                    url: "/dataurl",
+                    url: "AmandaJs/dropboxproxy.php?u="+files[0].link,
                     type: 'GET',
                     beforeSend: function (xhr) {
                         xhr.overrideMimeType("text/plain; charset=x-user-defined");
                     },
                     success: function( data ) {
-                        Module['FS_createDataFile']("/tmp", "test.file", data, true, true);
+                        functionEditor.setValue(data);
+                        Module['FS_createDataFile']("/tmp", "uploaded.ama", data, true, true);
+                        Module.ccall('Load', // name of C function
+                            'bool', // return type
+                            ['string'], // argument types
+                            ["/tmp/uploaded.ama"]); // arguments
                     }
                 });
 
@@ -125,7 +130,7 @@
             // Optional. "preview" (default) is a preview link to the document for sharing,
             // "direct" is an expiring link to download the contents of the file. For more
             // information about link types, see Link types below.
-            linkType: "preview", // or "direct"
+            linkType: "direct", // or "direct"
 
             // Optional. A value of false (default) limits selection to a single file, while
             // true enables multiple file selection.
@@ -150,12 +155,10 @@
                 {
                     uploadedFileUrl = "http://"+data.substring(3);
 
-
                     console.log(uploadedFileUrl);
                     //Download file via hidden iFrame
                     document.getElementById('downloader').src = uploadedFileUrl;
-                    //window.open(uploadedFileUrl, "_self");
-                    //downloadURI
+
 
                     //We can save to dropbox when we move to a server
                    /* var options = {
@@ -179,14 +182,6 @@
             });
 
 
-    }
-
-    function downloadURI(uri, name)
-    {
-        var link = document.createElement("a");
-        link.download = name;
-        link.href = uri;
-        link.click();
     }
 
 
