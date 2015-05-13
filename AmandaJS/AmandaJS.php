@@ -14,19 +14,19 @@
 <div class="row">
     <div class="col-md-12">
         <div class="btn-group" style="margin-right: 10px">
-            <button class="btn btn-default"><span class="glyphicon glyphicon-file"></span></button>
-            <button class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span></button>
-            <button class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk"></span> </button>
+            <button class="btn btn-default" disabled><span class="glyphicon glyphicon-file"></span></button>
+            <button class="btn btn-default" disabled><span class="glyphicon glyphicon-folder-open"></span></button>
+            <button class="btn btn-default" disabled><span class="glyphicon glyphicon-floppy-disk"></span> </button>
         </div>
         <div class="btn-group" style="margin-right: 10px">
-            <button class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span></button>
-            <button class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></button>
+            <button class="btn btn-default" disabled><span class="glyphicon glyphicon-arrow-left"></span></button>
+            <button class="btn btn-default" disabled><span class="glyphicon glyphicon-arrow-right"></span></button>
         </div>
         <button id="toggleTime" class="btn btn-default" style="margin-right: 10px" onclick="toggleTime()">Timing</button>
         <div class="btn-group">
-            <button class="btn btn-default">Functions</button>
-            <button class="btn btn-default">Operators</button>
-            <button class="btn btn-default">About</button>
+            <button class="btn btn-default" disabled>Functions</button>
+            <button class="btn btn-default" disabled>Operators</button>
+            <button class="btn btn-default" disabled>About</button>
         </div>
     </div>
 </div>
@@ -57,8 +57,8 @@
                             <textarea id="output" class="form-control" rows="8" readonly></textarea>
                         </div>
                         <div class="col-md-2">
-                            <input class="btn btn-default consoleButtons" type="button" value="Stop">
-                            <input class="btn btn-default consoleButtons" type="button" value="Clear">
+                            <input class="btn btn-default consoleButtons" type="button" value="Stop" disabled>
+                            <input class="btn btn-default consoleButtons" type="button" value="Clear" disabled>
                         </div>
                     </div>
                 </div>
