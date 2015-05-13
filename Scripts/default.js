@@ -25,7 +25,7 @@ function loadDropboxFile()
 
         // Required. Called when a user selects an item in the Chooser.
         success: function(files) {
-            alert("Here's the file link: " + files[0].link)
+            
             $.ajax({
                 url: "AmandaJs/dropboxproxy.php?u="+files[0].link,
                 type: 'GET',
