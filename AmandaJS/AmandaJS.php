@@ -7,7 +7,8 @@
 
 <script src="codemirror/codemirror.js"></script>
 <!--<link rel="stylesheet" href="codemirror/theme/night.css">-->
-<!--<script src="codemirror/mode/amanda/amanda.js"></script>-->
+<script src="codemirror/addon/mode/simple.js"></script>
+<script src="codemirror/mode/amanda/amanda.js"></script>
 <script src="codemirror/addon/display/fullscreen.js"></script>
 
 <!---->
@@ -89,7 +90,7 @@
 <script>
     var functionEditor = CodeMirror.fromTextArea(document.getElementById("functions"), {
         lineNumbers: true,
-        theme: "night",
+        mode: "amandamode",
         extraKeys: {
             "F11": function(cm) {
                 cm.setOption("fullScreen", !cm.getOption("fullScreen"));
