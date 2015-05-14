@@ -6,8 +6,9 @@ CodeMirror.defineSimpleMode("amandamode", {
     {regex: /'(?:[^\\]|\\.)*?'/, token: "string"},
     // You can match multiple tokens at once. Note that the captured
     // groups must span the whole string in this case
-    //{regex: /([a-z$]+[a-zA-Z$]*)\s*(.*)\s*=/,
-     //token: ["variable-2",""]},
+      //{regex: /([a-z]+[a-zA-Z0-9]*)([^=]*)(=)/gmi, token: ["variable-2","","comment"]},
+    //{regex: /^([a-z$\w$]+[a-zA-Z0-9$]*)\s+(\[*\(*[a-zA-Z0-9$]*\]*\)*)\s*(=)/,
+    // token: ["variable-2","","comment"]},
     // Rules are matched in the order in which they appear, so there is
     // no ambiguity between this one and the one above
     {regex: /(?:where|if|else|True|False|otherwise)\b/,
@@ -16,11 +17,11 @@ CodeMirror.defineSimpleMode("amandamode", {
     {regex: /0x[a-f\d]+|[-+]?(?:\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/i,
      token: "number"},
     {regex: /\|\|.*/, token: "comment"},
-    {regex: /\/(?:[^\\]|\\.)*?\//, token: "variable-3"},
+    //{regex: /\/(?:[^\\]|\\.)*?\//, token: "variable-3"},
     // A next property will cause the mode to move to a different state
     //{regex: /\/\*/, token: "comment", next: "comment"},
     //{regex: /[-+\/*=<>!]+/, token: "operator"},
-    {regex: /(\+|-|\*|\/|\^|\/\\|\\\/|mod|%|=|~|~=|>|<|>=|<=|\+\+|--|:|::)/, token: "operator"},
+    {regex: /(\+|-|\*|\/\\|\^|\/|\\\/|mod|%|=|~|~=|>|<|>=|<=|\+\+|--|:|::)/, token: "comment"},
     // indent and dedent properties guide autoindentation
     {regex: /[\{\[\(]/, indent: true},
     {regex: /[\}\]\)]/, dedent: true},
