@@ -143,7 +143,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 .CodeMirror {
   position: relative;
   overflow: hidden;
-  overflow-y: scroll;
   background: white;
 }
 
