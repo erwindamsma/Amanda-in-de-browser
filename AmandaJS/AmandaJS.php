@@ -14,9 +14,6 @@
 <!---->
 <script src="Scripts/jquery.caret.js"></script>
 
-<div class="spinner" id='spinner'></div>
-<div class="emscripten" id="status">Downloading...</div>
-
 <!--Buttons at the top-->
 <div class="row">
     <div class="col-md-12">
@@ -60,7 +57,7 @@
                 <div role="tabpanel" class="tab-pane active" id="console">
                     <div class="row">
                         <div class="col-md-10">
-                            <input type="text" class="form-control" id="input" onkeyup="submitConsoleInput(this.value)">
+                            <input type="text" class="form-control" id="input" disabled onkeyup="submitConsoleInput(this.value)">
                             <textarea id="output" class="form-control" rows="8" readonly></textarea>
                         </div>
                         <div class="col-md-2">

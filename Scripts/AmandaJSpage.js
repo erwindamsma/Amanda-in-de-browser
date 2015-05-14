@@ -1,5 +1,4 @@
-var statusElement = document.getElementById('status');
-var spinnerElement = document.getElementById('spinner');
+var input = document.getElementById('input');
 
 var Module = {
     preRun: [],
@@ -32,11 +31,15 @@ var Module = {
         if (m && now - Date.now() < 30) return; // if this is a progress update, skip it if too soon
         if (m) {
             text = m[1];
-            spinnerElement.hidden = false;
         } else {
-            if (!text) spinnerElement.style.display = 'none';
+            if (!text){
+                input.disabled = false;
+                input.value = "";
+            } else {
+                input.disabled = true;
+                input.value = text;
+            }
         }
-        statusElement.innerHTML = text;
     },
     totalDependencies: 0,
     monitorRunDependencies: function(left) {
@@ -47,8 +50,7 @@ var Module = {
 Module.setStatus('Downloading...');
 window.onerror = function(event) {
     // TODO: do not warn on ok events like simulating an infinite loop or exitStatus
-    Module.setStatus('Exception thrown, see JavaScript console');
-    spinnerElement.style.display = 'none';
+    Module.print('Exception thrown, see JavaScript console');
     Module.setStatus = function(text) {
         if (text) Module.printErr('[post-exception status] ' + text);
     };

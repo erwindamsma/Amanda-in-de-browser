@@ -18,7 +18,6 @@ function loadTempFile($fileContent)
         [filepath + "/" + filename]); // arguments
 }
 
-
 function loadDropboxFile()
 {
     options = {
@@ -41,7 +40,6 @@ function loadDropboxFile()
                         ["/tmp/uploaded.ama"]); // arguments
                 }
             });
-
         },
 
         // Optional. Called when the user closes the dialog without selecting a file
@@ -65,9 +63,7 @@ function loadDropboxFile()
         // see File types below. By default, all extensions are allowed.
         extensions: ['.txt', '.ama']
     };
-
     Dropbox.choose(options);
-
 }
 
 function saveEditorToFile()
@@ -82,7 +78,6 @@ function saveEditorToFile()
                 //Download file via hidden iFrame
                 document.getElementById('downloader').src = uploadedFileUrl;
 
-
                 //We can save to dropbox when we move to a server
                 /* var options = {
                  success: function () {
@@ -92,19 +87,15 @@ function saveEditorToFile()
                  };
                  console.log(uploadedFileUrl);
                  Dropbox.save(uploadedFileUrl, "debug.ama", options);*/
-
             }
             else
             {
                 alert("Something went wrong saving the file to our servers..");
-
             }
         })
         .fail(function() {
             alert("Something went wrong saving the file to our servers..");
         });
-
-
 }
 
 var commandsArray = new Array();
@@ -151,7 +142,6 @@ function clearEditor()
     {
         conf = confirm("Unsaved changes will be lost, are you sure?");
     }
-
 
     if(conf)
     {
