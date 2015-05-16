@@ -1,5 +1,59 @@
 editorHasChanges = false;
 
+function showError(message)
+{
+    var element = $("<div></div>").addClass("bg-danger").addClass("amandaJSMessage");
+
+    element.css("display","none");
+
+    element.html(""+message+"");
+    $("#messageArea").append(element);
+    $(element).fadeIn();
+
+    setTimeout(function() {
+        errorTimer = fadeAfterTimeout(element);
+    }, 4000);
+}
+
+function showInfo(message)
+{
+    var element = $("<div></div>").addClass("bg-info").addClass("amandaJSMessage");
+
+    element.css("display","none");
+
+    element.html(""+message+"");
+    $("#messageArea").append(element);
+    $(element).fadeIn();
+
+    setTimeout(function() {
+        errorTimer = fadeAfterTimeout(element);
+    }, 4000);
+}
+
+function showWarning(message)
+{
+    var element = $("<div></div>").addClass("bg-warning").addClass("amandaJSMessage");
+
+    element.css("display","none");
+
+    element.html(""+message+"");
+    $("#messageArea").append(element);
+    $(element).fadeIn();
+
+    setTimeout(function() {
+        errorTimer = fadeAfterTimeout(element);
+    }, 4000);
+}
+
+function fadeAfterTimeout(element)
+{
+    $.when($(element).fadeOut(500))
+        .done(function() {
+            element.remove();
+        });
+
+}
+
 function loadTempFile($fileContent)
 {
     filepath = "/tmp";
@@ -24,7 +78,7 @@ function loadDropboxFile()
 
         // Required. Called when a user selects an item in the Chooser.
         success: function(files) {
-            
+            showInfo("Loading: "+files[0].link);
             $.ajax({
                 url: "AmandaJs/dropboxproxy.php?u="+files[0].link,
                 type: 'GET',
@@ -32,12 +86,14 @@ function loadDropboxFile()
                     xhr.overrideMimeType("text/plain; charset=x-user-defined");
                 },
                 success: function( data ) {
+
                     functionEditor.setValue(data);
                     Module['FS_createDataFile']("/tmp", "uploaded.ama", data, true, true);
                     Module.ccall('Load', // name of C function
                         'bool', // return type
                         ['string'], // argument types
                         ["/tmp/uploaded.ama"]); // arguments
+                    showInfo("Finished loading: "+files[0].link);
                 }
             });
         },
@@ -152,6 +208,56 @@ function clearEditor()
     {
         return false;
     }
+}
+
+keywords = ["where","where","if","else","True","False","otherwise"];
+
+
+
+function beginsWithKeyword(str)
+{
+    for(j = 0 ; j < keywords.length; j++)
+    {
+        if(str.indexOf(keywords[j]) == 0) return true;
+    }
+    return false;
+}
+
+function getFunctions()
+{
+    lines = functionEditor.getValue().split("\n");
+    functions = [];
+    for(i = 0; i < lines.length; i++)
+    {
+        if(lines[i].charAt(0) != ' ')
+        {
+
+            if(!beginsWithKeyword(lines[i]) && lines[i].indexOf("=") != -1)
+            {
+                lineSplit = lines[i].split("=");
+                lineSplit = lineSplit[0].split(" ");
+                //Check if already added
+                exsists = false;
+                /*for(k = 0; k < functions.length; k++)
+                {
+                    if(functions[k].functionName == lineSplit[0]){
+                        exsists = true;
+                        break;
+                    }
+                }*/
+                if(!exsists) {
+                    tmp = {};
+                    tmp.functionName = lineSplit[0];
+                    tmp.arguments = lineSplit.slice(1, lineSplit.length - 1).filter(Boolean);
+                    functions[functions.length] = tmp;
+                }
+
+            }
+        }
+    }
+
+
+    return functions;
 }
 
 function toggleTime(){
