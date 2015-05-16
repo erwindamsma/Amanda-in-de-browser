@@ -274,7 +274,7 @@ function interpret(value){
         [value]); // arguments
 }
 
-window.onParseError = function(filename, linenr, columnnr)
+window.onParseError = function(type, linenr, columnnr)
 {
-    showError("<b>Error parsing file!</b><br>At line: "+linenr+" column: " + columnnr);
+    showError("<b>Error parsing file!</b><br>At line: "+linenr+" column: " + columnnr+"<br>"+type);
 }
