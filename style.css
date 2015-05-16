@@ -7,7 +7,7 @@ body {
 
 #messageArea
 {
-    position: absolute;
+    position: fixed;
     top:50px;
     right: 10px;
     width: 300px;

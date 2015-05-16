@@ -21,7 +21,7 @@ function showInfo(message)
 
     element.css("display","none");
 
-    element.html(""+message+"");
+    element.html("<span class='glyphicon glyphicon-exclamation-sign'></span> "+message+"");
     $("#messageArea").append(element);
     $(element).fadeIn();
 
@@ -74,52 +74,51 @@ function loadTempFile($fileContent)
 
 function loadDropboxFile()
 {
-    options = {
+    conf = !editorHasChanges;
 
-        // Required. Called when a user selects an item in the Chooser.
-        success: function(files) {
-            showInfo("Loading: "+files[0].link);
-            $.ajax({
-                url: "AmandaJs/dropboxproxy.php?u="+files[0].link,
-                type: 'GET',
-                beforeSend: function (xhr) {
-                    xhr.overrideMimeType("text/plain; charset=x-user-defined");
-                },
-                success: function( data ) {
+    if(editorHasChanges)
+    {
+        conf = confirm("Unsaved changes will be lost, are you sure?");
+    }
+    if(conf) {
+        options = {
 
-                    functionEditor.setValue(data);
-                    Module['FS_createDataFile']("/tmp", "uploaded.ama", data, true, true);
-                    Module.ccall('Load', // name of C function
-                        'bool', // return type
-                        ['string'], // argument types
-                        ["/tmp/uploaded.ama"]); // arguments
-                    showInfo("Finished loading: "+files[0].link);
-                }
-            });
-        },
+            // Required. Called when a user selects an item in the Chooser.
+            success: function (files) {
+                showInfo("<b>Loading:</b><br>" + files[0].link);
+                $.ajax({
+                    url: "AmandaJs/dropboxproxy.php?u=" + files[0].link,
+                    type: 'GET',
+                    beforeSend: function (xhr) {
+                        xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                    },
+                    success: function (data) {
 
-        // Optional. Called when the user closes the dialog without selecting a file
-        // and does not include any parameters.
-        cancel: function() {
+                        functionEditor.setValue(data);//Set the editor content
+                        editorHasChanges = false;
 
-        },
+                        if (FS.findObject("/tmp/uploaded.ama") != null) FS.unlink("/tmp/uploaded.ama");//Remove the tmp file
+                        Module['FS_createDataFile']("/tmp", "uploaded.ama", data, true, true);
+                        Module.ccall('Load', // name of C function
+                            'bool', // return type
+                            ['string'], // argument types
+                            ["/tmp/uploaded.ama"]); // arguments
 
-        // Optional. "preview" (default) is a preview link to the document for sharing,
-        // "direct" is an expiring link to download the contents of the file. For more
-        // information about link types, see Link types below.
-        linkType: "direct", // or "direct"
-
-        // Optional. A value of false (default) limits selection to a single file, while
-        // true enables multiple file selection.
-        multiselect: false, // or true
-
-        // Optional. This is a list of file extensions. If specified, the user will
-        // only be able to select files with these extensions. You may also specify
-        // file types, such as "video" or "images" in the list. For more information,
-        // see File types below. By default, all extensions are allowed.
-        extensions: ['.txt', '.ama']
-    };
-    Dropbox.choose(options);
+                        showInfo("<b>Finished Loading:</b><br>" + files[0].link);
+                    }
+                });
+            },
+            cancel: function () {
+            },
+            // Optional. "preview" (default) is a preview link to the document for sharing,
+            // "direct" is an expiring link to download the contents of the file. For more
+            // information about link types, see Link types below.
+            linkType: "direct", // or "direct"
+            multiselect: false, // or true
+            extensions: ['.txt', '.ama']
+        };
+        Dropbox.choose(options);
+    }
 }
 
 function saveEditorToFile()
@@ -133,7 +132,7 @@ function saveEditorToFile()
                 console.log(uploadedFileUrl);
                 //Download file via hidden iFrame
                 document.getElementById('downloader').src = uploadedFileUrl;
-
+                showInfo("<b>Saved File</b><br>Check your downloads.")
                 //We can save to dropbox when we move to a server
                 /* var options = {
                  success: function () {
@@ -203,6 +202,7 @@ function clearEditor()
     {
         functionEditor.setValue("");
         editorHasChanges = false;
+        showInfo("<b>Cleared Editor</b>")
     }
     else
     {
@@ -263,8 +263,8 @@ function getFunctions()
 function toggleTime(){
     interpret('time');
     $("#toggleTime").toggleClass('active').toggleClass('btn-success');
-    if($("#toggleTime").hasClass('active')) showWarning("Turned on timing");
-    else showWarning("Turned off timing");
+    if($("#toggleTime").hasClass('active')) showWarning("<span class='glyphicon glyphicon-time'></span> Turned on timing");
+    else showWarning("<span class='glyphicon glyphicon-time'></span> Turned off timing");
 }
 
 function interpret(value){
@@ -274,12 +274,7 @@ function interpret(value){
         [value]); // arguments
 }
 
-//We need a sleep function, dropbox.save can only be called from a click event, and we need to wait for the upload to complete.
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-        if ((new Date().getTime() - start) > milliseconds){
-            break;
-        }
-    }
+window.onParseError = function(filename, linenr, columnnr)
+{
+    showError("<b>Error parsing file!</b><br>At line: "+linenr+" column: " + columnnr);
 }
