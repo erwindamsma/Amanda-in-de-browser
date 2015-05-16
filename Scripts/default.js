@@ -263,6 +263,8 @@ function getFunctions()
 function toggleTime(){
     interpret('time');
     $("#toggleTime").toggleClass('active').toggleClass('btn-success');
+    if($("#toggleTime").hasClass('active')) showWarning("Turned on timing");
+    else showWarning("Turned off timing");
 }
 
 function interpret(value){
