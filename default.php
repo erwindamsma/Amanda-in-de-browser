@@ -68,7 +68,7 @@
                     <div class="btn-group" style="margin-right: 10px">
                         <button class="btn btn-default" onclick="clearEditor()"><span class="glyphicon glyphicon-file"></span></button>
                         <button class="btn btn-default" onclick="loadDropboxFile();"><span class="glyphicon glyphicon-folder-open"></span></button>
-                        <button class="btn btn-default" onclick="saveEditorToFile()"><span class="glyphicon glyphicon-floppy-disk"></span> </button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#saveFileModal" ><span class="glyphicon glyphicon-floppy-disk"></span> </button>
                     </div>
                     <div class="btn-group" style="margin-right: 10px">
                         <button class="btn btn-default" disabled><span class="glyphicon glyphicon-arrow-left"></span></button>
@@ -95,6 +95,25 @@
                         <div class="modal-body">
                             <div id="displayTest">
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Save file Modal-->
+            <div class="modal fade" id="saveFileModal" tabindex="-1" role="dialog" aria-labelledby="saveFileModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="saveFileModalLabel">Save File</h4>
+                        </div>
+                        <div class="modal-body">
+                            <label for="saveFileName">Filename:</label> <input class="form-control" type="text" name="saveFileName" id="saveFileName"/><br>
+                            <button onclick="saveEditorToFile(false, $('#saveFileName').val())">Save to Dropbox</button><button onclick="saveEditorToFile(true, $('#saveFileName').val())">Download file</button>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

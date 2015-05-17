@@ -10,13 +10,13 @@ session_start();
 
 $fileUrlLocation = "AmandaJs/";
 
-if(isset($_POST['editorValue']))
+if(isset($_POST['editorValue']) && isset($_POST['fileName']))
 {
-    $fileName = "tmpfiles/".session_id().".ama";
+    $fileName = "tmpfiles/".session_id()."/".$_POST['fileName'].".ama";
     $filedata = $_POST['editorValue'];
 
-    if (!file_exists('tmpfiles')) {
-        mkdir('tmpfiles', 0777, true);
+    if (!file_exists('tmpfiles/'.session_id())) {
+        mkdir('tmpfiles/'.session_id(), 0777, true);
     }
 
     $tmpFile = fopen($fileName, "w") or die("ERROR");;
