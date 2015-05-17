@@ -107,35 +107,41 @@ function loadDropboxFile()
     }
 }
 
-function saveEditorToFile()
+//saveLocal bool, filename string
+function saveEditorToFile(saveLocal, filename)
 {
-    var jqxhr = $.post( "AmandaJs/saveEditor.php", { editorValue: functionEditor.getValue() })
+    var jqxhr = $.post( "AmandaJs/saveEditor.php", { editorValue: functionEditor.getValue(), fileName: filename })
         .done(function(data) {
             if(data.lastIndexOf("OK:", 0) === 0)
             {
-                uploadedFileUrl = "http://"+data.substring(3);
+                uploadedFileUrl = "http://"+data.substring(3);//Without 'OK:' at the start of the string.
 
-                console.log(uploadedFileUrl);
-                //Download file via hidden iFrame
-                document.getElementById('downloader').src = uploadedFileUrl;
-                showInfo("<b>Saved File</b><br>Check your downloads.")
-                //We can save to dropbox when we move to a server
-                /* var options = {
-                 success: function () {
-                 // Indicate to the user that the files have been saved.
-                 alert("Success! Files saved to your Dropbox.");
-                 }
-                 };
-                 console.log(uploadedFileUrl);
-                 Dropbox.save(uploadedFileUrl, "debug.ama", options);*/
+                if(saveLocal) {
+                    //Download file via hidden iFrame
+                    document.getElementById('downloader').src = uploadedFileUrl;
+                    showInfo("<b>Saved File</b><br>Check your downloads.")
+                    console.log(uploadedFileUrl);
+                }
+                else
+                {
+                    var options = {
+                        success: function () {
+                            // Indicate to the user that the files have been saved.
+                            showInfo("Successfully saved files to your Dropbox.");
+                        }
+                    };
+                    //console.log(uploadedFileUrl);
+                    Dropbox.save(uploadedFileUrl, filename+".ama", options);
+                }
+
             }
             else
             {
-                alert("Something went wrong saving the file to our servers..");
+                showError("Something went wrong saving the file to our servers..");
             }
         })
         .fail(function() {
-            alert("Something went wrong saving the file to our servers..");
+            showError("Something went wrong saving the file to our servers..");
         });
 }
 
