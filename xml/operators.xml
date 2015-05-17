@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+	<function>
+		<name>+</name>
+		<parameter>num + num</parameter>
+		<inputExample>1 + 2</inputExample>
+		<outputExample>3</outputExample>
+		<description>Addition. Returns the sum of its two operands.</description>
+	</function>
+	<function>
+		<name>-</name>
+		<parameter>num - num</parameter>
+		<inputExample>9 - 4</inputExample>
+		<outputExample>5</outputExample>
+		<description>Subtraction. Returns the subtraction of its second operand by its first.</description>
+	</function>
+	<function>
+		<name>*</name>
+		<parameter>num * num</parameter>
+		<inputExample>3 * 3</inputExample>
+		<outputExample>9</outputExample>
+		<description>Multiplication. Returns the product o its two operands</description>
+	</function>
+	<function>
+		<name>/</name>
+		<parameter>num / num</parameter>
+		<inputExample>100/10</inputExample>
+		<outputExample>3</outputExample>
+		<description>Division. Returns the division of its first operand by its second.</description>
+	</function>
+</functions>

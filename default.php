@@ -69,9 +69,29 @@
                     </div>
                     <button id="toggleTime" class="btn btn-default" style="margin-right: 10px" onclick="toggleTime()">Timing</button>
                     <div class="btn-group">
-                        <button class="btn btn-default" disabled>Functions</button>
-                        <button class="btn btn-default" disabled>Operators</button>
-                        <button class="btn btn-default" disabled>About</button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" data-whatever="Functions">Functions</button>
+<!--                        <button class="btn btn-default" onclick="loadXml('functions')">Functions</button>-->
+                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" data-whatever="Operators">Operators</button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" data-whatever="About">About</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Help Modal-->
+            <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">hoi</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div id="displayTest">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,6 +137,20 @@
                     </div>
                 </div>
             </div>
+
+            <script>
+                $('#helpModal').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget) // Button that triggered the modal
+                    var category = button.data('whatever') // Extract info from data-* attributes
+                    var cat = 'functions'
+                    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                    var modal = $(this)
+                    modal.find('.modal-title').text(category)
+//                    modal.find('.modal-body div .displayTest').loadXml(cat)
+                    modal.find('.modal-body div .displayTest').text(loadXml(cat))
+                })
+            </script>
 
             <!--Amanda js code which emscripten normally puts in this page itself-->
             <script type='text/javascript' src="Scripts/AmandaJSpage.js"></script>

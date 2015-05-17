@@ -278,3 +278,33 @@ window.onParseError = function(type, linenr, columnnr)
 {
     showError("<b>Error parsing file!</b><br>At line: "+linenr+" column: " + columnnr+"<br>"+type);
 }
+
+function loadXml(xmlFileName) {
+    var str1 = "xml/";
+    var str2 = xmlFileName;
+    var str3 = ".xml";
+    var urlString = str1.concat(str2,str3);
+    console.log(urlString);
+    $.ajax({
+        url: urlString,
+        dataType: 'xml',
+        success: function (data) {
+            $(data).find("functions function").each(function () {
+                var name = $(this).find('name').text();
+                var parameter = $(this).find('parameter').text();
+
+                $('.displayTest').append(
+                    $('<p />', {
+                        text: name
+                    }),
+                    $('<p />', {
+                        text: parameter
+                    })
+                );
+            });
+        },
+        error: function () {
+            $('.displayTest').text('Failed to get feed');
+        }
+    });
+}

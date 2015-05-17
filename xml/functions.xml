@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions type="array">
+	<function>
+		<name>abs</name>
+		<parameter>num</parameter>
+		<inputExample>abs(-4)</inputExample>
+		<outputExample>4</outputExample>
+		<description>Returns the absolute value of a number.</description>
+	</function>
+	<function>
+		<name>round</name>
+		<parameter>num</parameter>
+		<inputExample>round 1.7</inputExample>
+		<outputExample>2</outputExample>
+		<description>Returns a number to the nearest integer.</description>
+	</function>
+	<function>
+		<name>neg</name>
+		<parameter>num</parameter>
+		<inputExample>neg 5</inputExample>
+		<outputExample>-5</outputExample>
+		<description>Returns the negative value of a number.</description>
+	</function>
+	<function>
+		<name>sqrt</name>
+		<parameter>num</parameter>
+		<inputExample>sqrt 9</inputExample>
+		<outputExample>3</outputExample>
+		<description>Returns the square root of a number.</description>
+	</function>
+</functions>
