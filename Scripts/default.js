@@ -1,8 +1,8 @@
 editorHasChanges = false;
 
-function showError(message)
+function newmessage(classname, message, length)
 {
-    var element = $("<div></div>").addClass("bg-danger").addClass("amandaJSMessage");
+    var element = $("<div></div>").addClass(classname).addClass("amandaJSMessage");
 
     element.css("display","none");
 
@@ -10,42 +10,28 @@ function showError(message)
     $("#messageArea").append(element);
     $(element).fadeIn();
 
-    setTimeout(function() {
-        errorTimer = fadeAfterTimeout(element);
-    }, 4000);
+    element.messageTimeout = setTimeout(function() {
+        errorTimer = fadeMessageAfterTimeout(element);
+    }, length);
+}
+
+
+function showError(message)
+{
+    newmessage("bg-danger", message, 4000);
 }
 
 function showInfo(message)
 {
-    var element = $("<div></div>").addClass("bg-info").addClass("amandaJSMessage");
-
-    element.css("display","none");
-
-    element.html("<span class='glyphicon glyphicon-exclamation-sign'></span> "+message+"");
-    $("#messageArea").append(element);
-    $(element).fadeIn();
-
-    setTimeout(function() {
-        errorTimer = fadeAfterTimeout(element);
-    }, 4000);
+    newmessage("bg-info", "<span class='glyphicon glyphicon-exclamation-sign'></span> "+message, 4000);
 }
 
 function showWarning(message)
 {
-    var element = $("<div></div>").addClass("bg-warning").addClass("amandaJSMessage");
-
-    element.css("display","none");
-
-    element.html(""+message+"");
-    $("#messageArea").append(element);
-    $(element).fadeIn();
-
-    setTimeout(function() {
-        errorTimer = fadeAfterTimeout(element);
-    }, 4000);
+    newmessage("bg-warning", message, 4000);
 }
 
-function fadeAfterTimeout(element)
+function fadeMessageAfterTimeout(element)
 {
     $.when($(element).fadeOut(500))
         .done(function() {
@@ -293,7 +279,7 @@ function loadXml(xmlFileName) {
                 var name = $(this).find('name').text();
                 var parameter = $(this).find('parameter').text();
 
-                $('.displayTest').append(
+                $('#displayTest').append(
                     $('<p />', {
                         text: name
                     }),
