@@ -73,7 +73,7 @@ function loadDropboxFile()
             success: function (files) {
                 showInfo("<b>Loading:</b><br>" + files[0].link);
                 $.ajax({
-                    url: "AmandaJs/dropboxproxy.php?u=" + files[0].link,
+                    url: "AmandaJS/dropboxproxy.php?u=" + files[0].link,
                     type: 'GET',
                     beforeSend: function (xhr) {
                         xhr.overrideMimeType("text/plain; charset=x-user-defined");
@@ -110,7 +110,7 @@ function loadDropboxFile()
 //saveLocal bool, filename string
 function saveEditorToFile(saveLocal, filename)
 {
-    var jqxhr = $.post( "AmandaJs/saveEditor.php", { editorValue: functionEditor.getValue(), fileName: filename })
+    var jqxhr = $.post( "AmandaJS/saveEditor.php", { editorValue: functionEditor.getValue(), fileName: filename })
         .done(function(data) {
             if(data.lastIndexOf("OK:", 0) === 0)
             {

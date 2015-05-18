@@ -8,7 +8,7 @@
 
 session_start();
 
-$fileUrlLocation = "AmandaJs/";
+$fileUrlLocation = "AmandaJS/";
 
 if(isset($_POST['editorValue']) && isset($_POST['fileName']))
 {
