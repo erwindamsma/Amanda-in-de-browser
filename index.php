@@ -3,6 +3,9 @@
     ini_set('display_errors', 'On');
 
     session_start();
+
+    include("SDKs/facebook.php");
+    include("SDKs/google.php");
 ?>
 
 <!DOCTYPE html>
