@@ -281,22 +281,27 @@ function loadXml(xmlFileName) {
         url: urlString,
         dataType: 'xml',
         success: function (data) {
-            $(data).find("functions function").each(function () {
-                var name = $(this).find('name').text();
-                var parameter = $(this).find('parameter').text();
+            $(' .cus-container-content-help-modal').html("");
+            $(data).find("functions function").each(
+                function () {
+                    var name = $(this).find('name').text();
+                    var parameter = $(this).find('parameter').text();
+                    var inputExample = $(this).find('inputExample').text();
+                    var outputExample = $(this).find('outputExample').text();
+                    var description = $(this).find('description').text();
 
-                $('#displayTest').append(
-                    $('<p />', {
-                        text: name
-                    }),
-                    $('<p />', {
-                        text: parameter
-                    })
-                );
-            });
+                    //$(' #displayTest').append($('<div class=name>'));
+                    $(' #displayTest').append($('<p></p>').text(name));
+                    $(' #displayTest').append($('<p></p>').text(parameter));
+                    $(' #displayTest').append($('<p></p>').text(inputExample));
+                    $(' #displayTest').append($('<p></p>').text(outputExample));
+                    $(' #displayTest').append($('<p></p>').text(description));
+                    //$(' .cus-container-help-modal').append($('</div>'));
+
+                });
         },
         error: function () {
-            $('.displayTest').text('Failed to get feed');
+            $(' #displayTest').text('Failed to get feed');
         }
     });
 }
