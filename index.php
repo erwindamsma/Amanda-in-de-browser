@@ -27,8 +27,11 @@
         <!-- Codemirror -->
         <link rel="stylesheet" href="codemirror/codemirror.css">
         <link rel="stylesheet" href="codemirror/addon/display/fullscreen.css">
+        <link rel="stylesheet" href="codemirror/mode/amanda/amandasyntax.css">
         <!-- Custom -->
         <link href="style.css" rel="stylesheet">
+        <!-- jQueryUI -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
         <!--###########################
         ######### JavaScript  #########
@@ -36,6 +39,8 @@
         <!-- Bootstrap core JavaScript
         Place at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
         <script src="bootstrap/bootstrap.js"></script>
         <!-- Dropbox -->
         <script src="https://www.dropbox.com/static/api/dropbox-datastores-1.2-latest.js" type="text/javascript"></script>
@@ -43,10 +48,8 @@
         <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="idcug02opq4uc1h"></script>
         <!-- Codemirror -->
         <script src="codemirror/codemirror.js"></script>
-        <!--<link rel="stylesheet" href="codemirror/theme/night.css">-->
         <script src="codemirror/addon/mode/simple.js"></script>
         <script src="codemirror/mode/amanda/amanda.js"></script>
-        <link rel="stylesheet" href="codemirror/mode/amanda/amandasyntax.css">
         <script src="codemirror/addon/display/fullscreen.js"></script>
         <!-- Caret plugin-->
         <script src="Scripts/jquery.caret.js"></script>

@@ -64,6 +64,8 @@ function loadTempFile($fileContent)
         'bool', // return type
         ['string'], // argument types
         [filepath + "/" + filename]); // arguments
+
+    initAutoComplete($("#input"));
 }
 
 function loadDropboxFile()
@@ -97,6 +99,8 @@ function loadDropboxFile()
                             'bool', // return type
                             ['string'], // argument types
                             ["/tmp/uploaded.ama"]); // arguments
+
+                        initAutoComplete($("#input"));
 
                         showInfo("<b>Finished Loading:</b><br>" + files[0].link);
                     }
@@ -157,36 +161,44 @@ var commandsArray = new Array();
 var commandsArrayIndex = 0;
 function submitConsoleInput($value){
     var input = $('#input');
-    switch (event.keyCode) {
-        case 13: //enter
-            document.getElementById("input").value = "";
-            Module.print("> " + $value);
-            commandsArray.push($value);
-            commandsArrayIndex = commandsArray.length;
-
-            switch ($value) {
-                case 'time':
-                    toggleTime();
-                    break;
-                default:
-                    interpret($value);
-                    break;
-            }
-            break;
-        case 38: //arrow up
-            if (commandsArrayIndex > 0){
-                commandsArrayIndex--;
-            }
-            input.val(commandsArray[commandsArrayIndex]);
-            input.caretToEnd();
-            break;
-        case 40: //arrow down
-            if (commandsArrayIndex < commandsArray.length){
-                commandsArrayIndex++;
-            }
-            input.val(commandsArray[commandsArrayIndex]);
-            break;
+    if($("#ui-id-1").css("display") == "block")//If the autocomplete dropdown is visible, dont capture input.
+    {
+        //Do nothing
     }
+    else
+    {
+        switch (event.keyCode) {
+            case 13: //enter
+                document.getElementById("input").value = "";
+                Module.print("> " + $value);
+                commandsArray.push($value);
+                commandsArrayIndex = commandsArray.length;
+
+                switch ($value) {
+                    case 'time':
+                        toggleTime();
+                        break;
+                    default:
+                        interpret($value);
+                        break;
+                }
+                break;
+            case 38: //arrow up
+                if (commandsArrayIndex > 0){
+                    commandsArrayIndex--;
+                }
+                input.val(commandsArray[commandsArrayIndex]);
+                input.caretToEnd();
+                break;
+            case 40: //arrow down
+                if (commandsArrayIndex < commandsArray.length){
+                    commandsArrayIndex++;
+                }
+                input.val(commandsArray[commandsArrayIndex]);
+                break;
+        }
+    }
+
 }
 
 function clearEditor()
@@ -258,6 +270,33 @@ function getFunctions()
 
 
     return functions;
+}
+
+function initAutoComplete(element)
+{
+    functionObjects = getFunctions();
+    availableTags = [];
+    for(q = 0; q < functionObjects.length; q++)
+    {
+        functionString = functionObjects[q].functionName;
+        for(j = 0; j < functionObjects[q].arguments.length;j++){
+            functionString += " " + functionObjects[q].arguments[j];
+        }
+
+        tmpObj = {
+            label:  functionString,
+            value:    functionObjects[q].functionName + " "
+        };
+
+        availableTags[q] = tmpObj;
+    }
+
+    console.log(availableTags);
+
+    $( element ).autocomplete({
+        source: availableTags
+    });
+
 }
 
 function toggleTime(){
