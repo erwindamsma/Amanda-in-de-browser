@@ -1,0 +1,31 @@
+.cm-functionname{
+    color: #56a1ff !important;
+}
+
+.cm-variable{
+    color: #000000 !important;
+}
+
+.cm-keyword{
+    color: #0000ff !important;
+}
+
+.cm-atom{
+    color: #b614ff !important;
+}
+
+.cm-number{
+    color: #ffa500 !important;
+}
+
+.cm-operator{
+    color: #b614ff !important;
+}
+
+.cm-string{
+    color: #ff0000 !important;
+}
+
+.cm-comment{
+    color: #17ae1e !important;
+}

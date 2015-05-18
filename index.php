@@ -46,6 +46,7 @@
         <!--<link rel="stylesheet" href="codemirror/theme/night.css">-->
         <script src="codemirror/addon/mode/simple.js"></script>
         <script src="codemirror/mode/amanda/amanda.js"></script>
+        <link rel="stylesheet" href="codemirror/mode/amanda/amandasyntax.css">
         <script src="codemirror/addon/display/fullscreen.js"></script>
         <!-- Caret plugin-->
         <script src="Scripts/jquery.caret.js"></script>
@@ -113,7 +114,7 @@
                         </div>
                         <div class="modal-body">
                             <label for="saveFileName">Filename:</label> <input class="form-control" type="text" name="saveFileName" id="saveFileName"/><br>
-                            <button onclick="saveEditorToFile(false, $('#saveFileName').val())">Save to Dropbox</button><button onclick="saveEditorToFile(true, $('#saveFileName').val())">Download file</button>
+                            <button onclick="saveEditorToFile(false, $('#saveFileName').val()); $('#saveFileModal').modal('hide');">Save to Dropbox</button><button onclick="saveEditorToFile(true, $('#saveFileName').val()); $('#saveFileModal').modal('hide');">Download file</button>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

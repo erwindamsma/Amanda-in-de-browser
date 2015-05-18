@@ -1,5 +1,13 @@
 editorHasChanges = false;
 
+window.onParseError = function(type, linenr, columnnr)
+{
+    if(linenr != -1 && columnnr != -1)
+        showError("<b>Error parsing file!</b><br>At line: "+linenr+" column: " + columnnr+"<br>"+type);
+    else
+        showError("<b>Error parsing file!</b><br>"+type);
+}
+
 function newmessage(classname, message, length)
 {
     var element = $("<div></div>").addClass(classname).addClass("amandaJSMessage");
@@ -266,10 +274,7 @@ function interpret(value){
         [value]); // arguments
 }
 
-window.onParseError = function(type, linenr, columnnr)
-{
-    showError("<b>Error parsing file!</b><br>At line: "+linenr+" column: " + columnnr+"<br>"+type);
-}
+
 
 function loadXml(xmlFileName) {
     var str1 = "xml/";
