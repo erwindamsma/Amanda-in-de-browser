@@ -7,7 +7,7 @@ function newmessage(classname, message, length)
     element.css("display","none");
 
     element.html(""+message+"");
-    $("#messageArea").append(element);
+    $("#messageArea").prepend(element);
     $(element).fadeIn();
 
     element.messageTimeout = setTimeout(function() {

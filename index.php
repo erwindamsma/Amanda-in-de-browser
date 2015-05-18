@@ -59,11 +59,11 @@
         ?>
 
         <div class="container">
-            <div id="messageArea"></div>
+
             <!--Buttons at the top-->
             <div class="row">
                 <div class="col-md-12">
-
+                    <div id="messageArea" class="form-control"><!-- Messages are shown here --></div>
 
                     <div class="btn-group" style="margin-right: 10px">
                         <button class="btn btn-default" onclick="clearEditor()"><span class="glyphicon glyphicon-file"></span></button>
