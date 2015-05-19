@@ -334,13 +334,16 @@ function loadXml(xmlFileName) {
                     var outputExample = $(this).find('outputExample').text();
                     var description = $(this).find('description').text();
 
-                    //$(' #displayTest').append($('<div class=name>'));
-                    $(' #displayTest').append($('<p></p>').text(name));
-                    $(' #displayTest').append($('<p></p>').text(parameter));
-                    $(' #displayTest').append($('<p></p>').text(inputExample));
-                    $(' #displayTest').append($('<p></p>').text(outputExample));
-                    $(' #displayTest').append($('<p></p>').text(description));
-                    //$(' .cus-container-help-modal').append($('</div>'));
+                    $(' #displayTest').append($('<div>'));
+                    $(' .container-cus-help-modal').append($('<p></p>').text(name));
+                    $(' .container-cus-help-modal').append($('<p></p>').text(parameter));
+                    $(' .container-cus-help-modal').append($('<p></p>').text(inputExample));
+                    $(' .container-cus-help-modal').append($('<p></p>').text(outputExample));
+                    $(' .container-cus-help-modal').append($('<p></p>').text(description));
+                    $( name).append($('</div>'));
+
+                    $(' #displayTest div').addClass('container-cus-help-modal');
+                    $('<div.container-cus-help-modal>').attr('id', name);
 
                 });
         },
