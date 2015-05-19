@@ -9,14 +9,14 @@ CodeMirror.defineSimpleMode("amandamode", {
     {regex: /(?:where|if|else|True|False|otherwise)\b/,
      token: "keyword"},
      {regex: /(?:abs|round|neg|sqrt|code|decode|ftoa|itoa|atof|atoi|isupper|islower|isspace|fst|snd|min2|max2|exp|log|cos|sin|pi|atan|time|timedate|#|hd|tl|min|max|sum|prod|take|drop|takewhile|filter|and|or|member|empty|merge|concat|zip|zip2|zip3|split|splitwhile|sort|mergeSort|reverse|nodup|map|lines|words|unlines|coordsToString|ljustify|rjustify|cjustify|rep|nat|nats|gennat|gennats|fwrite|fappend|fread)\b/,
-     token: "atom"},
+     token: "functionname"},
     //{regex: /true|false|null|undefined/, token: "atom"},
     {regex: /0x[a-f\d]+|[-+]?(?:\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/i, token: "number"},
     {regex: /\|\|.*/, token: "comment"},
 	
 	// You can match multiple tokens at once. Note that the captured
     // groups must span the whole string in this case
-	{regex: /([\w\-]+)?([^=]*)?(=)/, token: ["functionname","variable","operator"]},
+	{regex: /^(?:([\w]+)?([^=]*?)(=))/, token: ["functionname","variable","operator"]},
 	
     {regex: /(\+|-|\*|\/\\|\^|\/|\\\/|mod|%|=|~|~=|>|<|>=|<=|\+\+|--|:|::)/, token: "operator"},
     // indent and dedent properties guide autoindentation

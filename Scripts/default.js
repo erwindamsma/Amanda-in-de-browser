@@ -3,9 +3,9 @@ editorHasChanges = false;
 window.onParseError = function(type, linenr, columnnr)
 {
     if(linenr != -1 && columnnr != -1)
-        showError("<b>Error parsing file!</b><br>At line: "+linenr+" column: " + columnnr+"<br>"+type);
+        showError("<b>Syntax error!</b><br>At line: "+linenr+" column: " + columnnr+"<br>"+type);
     else
-        showError("<b>Error parsing file!</b><br>"+type);
+        showError("<b>Syntax error!</b><br>"+type);
 }
 
 function newmessage(classname, message, length)
@@ -291,7 +291,7 @@ function initAutoComplete(element)
         availableTags[q] = tmpObj;
     }
 
-    console.log(availableTags);
+    //console.log(availableTags);
 
     $( element ).autocomplete({
         source: availableTags
