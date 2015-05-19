@@ -17,10 +17,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php
-                    if ( isset($session) ) {
-                        echo print_r($graphObject, 1);
-                    } elseif (!(isset($authUrl))) {
-                        echo "<li><a class='logout' href='?logout'>Logout Google</a></li>";
+                    if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
+                        echo "<li><a class='logout' href='?logout'>Logout</a></li>";
                     } else {
                         echo '<li><a>login: </a></li>
                         <li><a href="' . $helper->getLoginUrl( array( 'email', 'user_friends' ) ) . '">FB</a></li>

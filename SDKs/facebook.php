@@ -29,16 +29,19 @@
     use Facebook\GraphObject;
 
     FacebookSession::setDefaultApplication('1453083768317435', 'e5aea522d0911aacdac480b23d1755cd');
-    $helper = new FacebookRedirectLoginHelper("http://www.edamsma.nl/");
+    $helper = new FacebookRedirectLoginHelper("http://www.edamsma.nl/?facebookLogin");
     //$loginUrl = $helper->getLoginUrl();
 
-    try {
-        $session = $helper->getSessionFromRedirect();
-    } catch (FacebookRequestException $ex) {
-        // When Facebook returns an error
-    } catch (Exception $ex) {
-        // When validation fails or other local issues
+    if (isset($_GET['facebookLogin'])){
+        try {
+            $session = $helper->getSessionFromRedirect();
+        } catch (FacebookRequestException $ex) {
+            // When Facebook returns an error
+        } catch (Exception $ex) {
+            // When validation fails or other local issues
+        }
     }
+
     if (isset($session)){
         // graph api request for user data
         $response = (new FacebookRequest( $session, 'GET', '/me' ))->execute();
@@ -53,7 +56,6 @@
         if ($result->num_rows === 0) {
             $db->query("INSERT INTO users (apiId) VALUES (" . $graphObject->getProperty('id') . ")");
         }
-
-        echo($db->error);
+        $_SESSION['loggedIn'] = true;
     }
 ?>

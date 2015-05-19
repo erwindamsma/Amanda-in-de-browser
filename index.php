@@ -4,8 +4,8 @@
 
     session_start();
 
-    include("SDKs/facebook.php");
-    include("SDKs/google.php");
+    include("SDKs/authenticate.php");
+
 ?>
 
 <!DOCTYPE html>
