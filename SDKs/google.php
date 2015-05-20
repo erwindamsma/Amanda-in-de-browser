@@ -9,7 +9,7 @@
     $client->setClientId($client_id);
     $client->setClientSecret($client_secret);
     $client->setRedirectUri($redirect_uri);
-    $client->setScopes(array('https://www.googleapis.com/auth/plus.login', 'profile', 'email', 'openid',));
+    $client->setScopes(array('profile', 'email', 'openid',));
     $oauth2 = new Google_Service_Oauth2($client);
 
     if (isset($_GET['code']) && isset($_GET['googleLogin'])) {
@@ -21,30 +21,28 @@
 
     if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
         $client->setAccessToken($_SESSION['access_token']);
-        $_SESSION['loggedIn'] = true;
     } else {
         $authUrl = $client->createAuthUrl();
     }
 
+    //Added code for managing session
     if ($client->getAccessToken()) {
-        $user = $oauth2->userinfo->get();
-        $email = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
-        $img = filter_var($user['picture'], FILTER_VALIDATE_URL);
-        $personMarkup = "$email<div><img src='$img?sz=50'></div>";
-    }
+        $googleUser = $oauth2->userinfo->get();
 
-//    if (isset($_REQUEST['error'])) {
-//        echo '<script type="text/javascript">window.close();</script>'; exit;
-//    }
-//    if ($client->getAccessToken()) {
-//        $user = $oauth2->userinfo->get();
-//        // These fields are currently filtered through the PHP sanitize filters.
-//        $email = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
-//        $img = filter_var($user['picture'], FILTER_VALIDATE_URL);
-//        $personMarkup = "$email<div><img src='$img?sz=50'></div>";
-//        // The access token may have been updated lazily.
-//        $_SESSION['token'] = $client->getAccessToken();
-//    } else {
-//        $authUrl = $client->createAuthUrl();
-//    }
+        $db = new mysqli("10.184.18.211", "u151188_auth", "BX}5Z+2x7y");
+        $db->select_db("db151188_main");
+        $sql = "SELECT userId FROM users WHERE googleId = " . $googleUser->getId();
+        $result = $db->query($sql);
+        if ($result->num_rows === 0) {
+            $db->query("INSERT INTO users (googleId) VALUES (" . $googleUser->getId() . ")");
+        }
+
+        $_SESSION['loggedIn'] = true;
+        $_SESSION['userId'] = $db->query("SELECT userId FROM users WHERE googleId = ");
+        $_SESSION['apiId'] = $googleUser->getId();
+        $_SESSION['firstName'] = $googleUser->getGivenName();
+        $_SESSION['lastName'] = $googleUser->getFamilyName();
+        $_SESSION['email'] = filter_var($googleUser['email'], FILTER_SANITIZE_EMAIL);
+        $_SESSION['img'] = filter_var($googleUser['picture'], FILTER_VALIDATE_URL);
+    }
 ?>

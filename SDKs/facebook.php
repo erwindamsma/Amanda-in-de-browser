@@ -50,12 +50,18 @@
 
         $db = new mysqli("10.184.18.211", "u151188_auth", "BX}5Z+2x7y");
         $db->select_db("db151188_main");
-
-        $sql = "SELECT userId FROM users WHERE apiId = " . $graphObject->getProperty('id');
+        $sql = "SELECT userId FROM users WHERE facebookId = " . $graphObject->getProperty('id');
         $result = $db->query($sql);
         if ($result->num_rows === 0) {
-            $db->query("INSERT INTO users (apiId) VALUES (" . $graphObject->getProperty('id') . ")");
+            $db->query("INSERT INTO users (facebookId) VALUES (" . $graphObject->getProperty('id') . ")");
         }
+
         $_SESSION['loggedIn'] = true;
+        $_SESSION['userId'] = $db->query("SELECT userId FROM users WHERE facebookId = ");
+        $_SESSION['apiId'] = $graphObject->getProperty('id');
+        $_SESSION['firstName'] = $graphObject->getProperty('first_name');
+        $_SESSION['lastName'] = $graphObject->getProperty('last_name');
+        $_SESSION['email'] = $graphObject->getProperty('email');
+        $_SESSION['img'] = "http://graph.facebook.com/" . $_SESSION['apiId'] . "/picture";
     }
 ?>

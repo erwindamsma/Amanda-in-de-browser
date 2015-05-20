@@ -18,7 +18,18 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php
                     if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
-                        echo "<li><a class='logout' href='?logout'>Logout</a></li>";
+                        echo '
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" style="padding: 2px 15px 2px 15px">
+                                    <img src="' . $_SESSION['img'] . '?sz=50" style="border-radius: 100%">
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">' . $_SESSION['apiId'] . '</a></li>
+                                    <li><a href="#">' . $_SESSION['firstName'] . ' ' . $_SESSION['lastName'] . '</a></li>
+                                    <li><a href="#">' . $_SESSION['email'] . '</a></li>
+                                    <li><a href="?logout">Logout</a></li>
+                                </ul>
+                            </li>';
                     } else {
                         echo '<li><a>login: </a></li>
                         <li><a href="' . $helper->getLoginUrl( array( 'email', 'user_friends' ) ) . '">FB</a></li>
