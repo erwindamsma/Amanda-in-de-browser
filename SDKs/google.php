@@ -2,8 +2,8 @@
     require_once realpath(dirname(__FILE__) . '/../SDKs/google-api-php-client-master/src/Google/autoload.php');
 
     $client = new Google_Client();
-    $client->setClientId('341910032596-stmpjksv7lshi2hbcfqkm4fkaf8hhcjv.apps.googleusercontent.com');
-    $client->setClientSecret('O6tKXL4MdoRL7ch6bIMERkmm');
+    $client->setClientId($googleClientId);
+    $client->setClientSecret($googleClientSecret);
     $client->setRedirectUri('http://www.edamsma.nl/?googleLogin');
     $client->setScopes(array('profile', 'email', 'openid',));
     $oauth2 = new Google_Service_Oauth2($client);

@@ -28,7 +28,7 @@
     use Facebook\FacebookAuthorizationException;
     use Facebook\GraphObject;
 
-    FacebookSession::setDefaultApplication('1453083768317435', 'e5aea522d0911aacdac480b23d1755cd');
+    FacebookSession::setDefaultApplication($facebookClientId, $facebookClientSecret);
     $helper = new FacebookRedirectLoginHelper("http://www.edamsma.nl/?facebookLogin");
     //$loginUrl = $helper->getLoginUrl();
 
