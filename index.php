@@ -66,12 +66,10 @@
         ?>
 
         <div class="container">
-
+            <div id="messageArea"><!-- Messages are shown here --></div>
             <!--Buttons at the top-->
             <div class="row">
                 <div class="col-md-12">
-                    <div id="messageArea" class="form-control"><!-- Messages are shown here --></div>
-
                     <div class="btn-group" style="margin-right: 10px">
                         <button class="btn btn-default" onclick="clearEditor()"><span class="glyphicon glyphicon-file"></span></button>
                         <button class="btn btn-default" onclick="loadDropboxFile();"><span class="glyphicon glyphicon-folder-open"></span></button>
@@ -143,7 +141,7 @@
                         <!-- Tabs -->
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active"><a href="#console" role="tab" data-toggle="tab">Console</a></li>
-                            <li role="presentation"><a href="#errorlist" role="tab" data-toggle="tab">Error list</a></li>
+                            <li role="presentation"><a id="errorListTabTitle" href="#errorlist" role="tab" data-toggle="tab">Error List (0)</a></li>
                             <li role="presentation"><a href="#graphic" role="tab" data-toggle="tab">Graphic</a></li>
                         </ul>
                         <!-- Panes -->
@@ -161,7 +159,7 @@
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="errorlist">
-
+                                <div id="errorArea"><!-- Messages are shown here --></div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="graphic">
                                 <h2>Graphic is not (yet) implemented.</h2>

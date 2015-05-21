@@ -4,6 +4,6 @@ function get_remote_data($url, $post_paramtrs=false)    {
 }
 $url = str_replace(" ", "%20", $_GET['u']);
 
-echo readfile($url);
+readfile($url);
 
 ?>

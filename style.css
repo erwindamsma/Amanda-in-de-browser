@@ -8,15 +8,32 @@ body {
 #messageArea
 {
     position: fixed;
-    top:50px;
-    right: 10px;
-    width: 300px;
-    border: 0px solid black;
+    bottom:0px;
 
+    left: 50%;
+    margin-left: -384px; /* Half of the width */
+
+    width: 768px;
+    border: 0px solid black;
+    background-color: #00ffffff;
     z-index: 999;
 }
 
+#errorArea{
+
+}
+
 .amandaJSMessage{
+    padding:10px;
+    margin: 3px;
+    border-radius: 4px;
+    text-align: center;
+
+    word-wrap: break-word;
+
+}
+
+.amandaJSError{
     padding:10px;
     margin: 3px;
     border-radius: 4px;
@@ -27,14 +44,9 @@ body {
 @media screen and (max-width: 768px) {
     #messageArea
     {
-        position: relative;
         width: 100%;
-        height:120px;
-        top:0px;
-        z-index: 999;
-        overflow-y:scroll;
-
-        margin-bottom: 5px;
+        left: 0px;
+        margin-left: 0px;
     }
 }
 

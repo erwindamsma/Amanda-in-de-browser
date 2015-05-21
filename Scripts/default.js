@@ -1,3 +1,7 @@
+errorcount = 0;
+messageQueue = [];
+messageLength = 1500;
+
 window.onParseError = function(type, linenr, columnnr)
 {
     if(linenr != -1 && columnnr != -1)
@@ -6,25 +10,71 @@ window.onParseError = function(type, linenr, columnnr)
         showError("<b>Syntax error!</b><br>"+type);
 }
 
-function newmessage(classname, message, length)
+function addToMessageQueue(element)
+{
+    messageQueue[messageQueue.length] = element;
+    if(messageQueue.length == 1) functionNexMessage();
+}
+
+function functionNexMessage(){
+    if(messageQueue.length == 0) return;
+
+    $("#messageArea").prepend(messageQueue[0]);
+    $(messageQueue[0]).fadeIn();
+    $(messageQueue[0]).animate({bottom:'0px'},1000);
+
+    messageQueue[0].messageTimeout = setTimeout(function () {
+        $.when($(messageQueue[0]).fadeOut(500))
+            .done(function() {
+                $(messageQueue[0]).remove();
+                messageQueue.splice(0, 1);
+                functionNexMessage();
+
+            });
+    }, messageLength);
+
+
+
+}
+
+function newmessage(classname, message)
 {
     var element = $("<div></div>").addClass(classname).addClass("amandaJSMessage");
 
     element.css("display","none");
 
     element.html(""+message+"");
-    $("#messageArea").prepend(element);
-    $(element).fadeIn();
 
-    element.messageTimeout = setTimeout(function() {
-        errorTimer = fadeMessageAfterTimeout(element);
-    }, length);
+    addToMessageQueue(element);
+
 }
 
 
 function showError(message)
 {
-    newmessage("bg-danger", message, 4000);
+    var element = $("<div></div>").addClass("bg-danger").addClass("amandaJSError");
+
+    var currentdate = new Date();
+
+
+    element.css("display","none");
+
+    time=('0'  + currentdate.getMinutes()).slice(-2)+':'+('0' + currentdate.getSeconds()).slice(-2);
+
+    element.html(message+"<br>"+currentdate.getHours() + ":" + time);
+    $("#errorArea").prepend(element);
+    $(element).fadeIn();
+
+    errorcount++;
+
+    $("#errorListTabTitle").html("Error List ("+errorcount+")");
+}
+
+function clearErrors()
+{
+    $("#errorArea").html("");
+    errorcount = 0;
+    $("#errorListTabTitle").html("Error List ("+errorcount+")");
 }
 
 function showInfo(message)
@@ -34,16 +84,25 @@ function showInfo(message)
 
 function showWarning(message)
 {
-    newmessage("bg-warning", message, 4000);
+    newmessage("bg-info", message, 4000);
 }
 
 function fadeMessageAfterTimeout(element)
 {
-    $.when($(element).fadeOut(500))
-        .done(function() {
-            element.remove();
-        });
 
+
+}
+
+function AmandaJSLoad(filepath)
+{
+    clearErrors();
+
+    Module.ccall('Load', // name of C function
+        'bool', // return type
+        ['string'], // argument types
+        [filepath]); // arguments
+
+    initAutoComplete($("#input"));
 }
 
 function loadTempFile($fileContent)
@@ -57,13 +116,7 @@ function loadTempFile($fileContent)
     if(FS.findObject(filepath + "/" + filename) != null) FS.unlink(filepath + "/" + filename);//Remove the tmp file
     FS.createDataFile(filepath, filename, fileData, true, true, true); //Create the tmp.ama file
 
-    //Load '/tmp/tmp.ama' in AmandaJs by calling the Load function
-    Module.ccall('Load', // name of C function
-        'bool', // return type
-        ['string'], // argument types
-        [filepath + "/" + filename]); // arguments
-
-    initAutoComplete($("#input"));
+    AmandaJSLoad(filepath + "/" + filename);
 }
 
 function loadDropboxFile()
@@ -79,7 +132,7 @@ function loadDropboxFile()
 
             // Required. Called when a user selects an item in the Chooser.
             success: function (files) {
-                showInfo("<b>Loading:</b><br>" + files[0].link);
+                showInfo("<b>Started Loading:</b><br>" + files[0].link);
                 $.ajax({
                     url: "AmandaJS/dropboxproxy.php?u=" + files[0].link,
                     type: 'GET',
@@ -93,12 +146,8 @@ function loadDropboxFile()
 
                         if (FS.findObject("/tmp/uploaded.ama") != null) FS.unlink("/tmp/uploaded.ama");//Remove the tmp file
                         Module['FS_createDataFile']("/tmp", "uploaded.ama", data, true, true);
-                        Module.ccall('Load', // name of C function
-                            'bool', // return type
-                            ['string'], // argument types
-                            ["/tmp/uploaded.ama"]); // arguments
 
-                        initAutoComplete($("#input"));
+                        AmandaJSLoad("/tmp/uploaded.ama");
 
                         showInfo("<b>Finished Loading:</b><br>" + files[0].link);
                     }
