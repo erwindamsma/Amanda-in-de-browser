@@ -30,7 +30,7 @@ if(isset($_POST['editorValue']) && isset($_POST['fileName']))
         $dir .= $parts[$i] . "/";
     }
 
-    die("OK:".$_SERVER['HTTP_HOST'].$dir.$fileUrlLocation.$fileName);
+    die("OK:".$_SERVER['HTTP_HOST'].$dir.$fileUrlLocation."downloadama.php?filename=".$_POST['fileName'].".ama");
 }
 else{
     die("ERROR");
