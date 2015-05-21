@@ -1,5 +1,3 @@
-editorHasChanges = false;
-
 window.onParseError = function(type, linenr, columnnr)
 {
     if(linenr != -1 && columnnr != -1)
@@ -70,9 +68,9 @@ function loadTempFile($fileContent)
 
 function loadDropboxFile()
 {
-    conf = !editorHasChanges;
+    conf = true;
 
-    if(editorHasChanges)
+    if(functionEditor.getValue().length > 0)
     {
         conf = confirm("Unsaved changes will be lost, are you sure?");
     }
@@ -91,7 +89,7 @@ function loadDropboxFile()
                     success: function (data) {
 
                         functionEditor.setValue(data);//Set the editor content
-                        editorHasChanges = false;
+
 
                         if (FS.findObject("/tmp/uploaded.ama") != null) FS.unlink("/tmp/uploaded.ama");//Remove the tmp file
                         Module['FS_createDataFile']("/tmp", "uploaded.ama", data, true, true);
@@ -161,51 +159,45 @@ var commandsArray = new Array();
 var commandsArrayIndex = 0;
 function submitConsoleInput($value){
     var input = $('#input');
-    if($("#ui-id-1").css("display") == "block")//If the autocomplete dropdown is visible, dont capture input.
-    {
-        //Do nothing
-    }
-    else
-    {
-        switch (event.keyCode) {
-            case 13: //enter
-                document.getElementById("input").value = "";
-                Module.print("> " + $value);
-                commandsArray.push($value);
-                commandsArrayIndex = commandsArray.length;
 
-                switch ($value) {
-                    case 'time':
-                        toggleTime();
-                        break;
-                    default:
-                        interpret($value);
-                        break;
-                }
-                break;
-            case 38: //arrow up
-                if (commandsArrayIndex > 0){
-                    commandsArrayIndex--;
-                }
-                input.val(commandsArray[commandsArrayIndex]);
-                input.caretToEnd();
-                break;
-            case 40: //arrow down
-                if (commandsArrayIndex < commandsArray.length){
-                    commandsArrayIndex++;
-                }
-                input.val(commandsArray[commandsArrayIndex]);
-                break;
-        }
+    switch (event.keyCode) {
+        case 13: //enter
+            document.getElementById("input").value = "";
+            Module.print("> " + $value);
+            commandsArray.push($value);
+            commandsArrayIndex = commandsArray.length;
+
+            switch ($value) {
+                case 'time':
+                    toggleTime();
+                    break;
+                default:
+                    interpret($value);
+                    break;
+            }
+            break;
+        case 38: //arrow up
+            if (commandsArrayIndex > 0){
+                commandsArrayIndex--;
+            }
+            input.val(commandsArray[commandsArrayIndex]);
+            input.caretToEnd();
+            break;
+        case 40: //arrow down
+            if (commandsArrayIndex < commandsArray.length){
+                commandsArrayIndex++;
+            }
+            input.val(commandsArray[commandsArrayIndex]);
+            break;
     }
 
 }
 
 function clearEditor()
 {
-    conf = !editorHasChanges;
+    conf = true;
 
-    if(editorHasChanges)
+    if(functionEditor.getValue().length > 0)
     {
         conf = confirm("Unsaved changes will be lost, are you sure?");
     }
@@ -213,7 +205,6 @@ function clearEditor()
     if(conf)
     {
         functionEditor.setValue("");
-        editorHasChanges = false;
         showInfo("<b>Cleared Editor</b>")
     }
     else
@@ -241,7 +232,7 @@ function getFunctions()
     functions = [];
     for(i = 0; i < lines.length; i++)
     {
-        if(lines[i].charAt(0) != ' ')
+        if(lines[i].charAt(0) != ' ' && lines[i].indexOf("|") != 0)
         {
 
             if(!beginsWithKeyword(lines[i]) && lines[i].indexOf("=") != -1)

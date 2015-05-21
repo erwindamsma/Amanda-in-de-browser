@@ -47,8 +47,6 @@
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
         <script src="bootstrap/bootstrap.js"></script>
-        <!-- Dropbox -->
-        <script src="https://www.dropbox.com/static/api/dropbox-datastores-1.2-latest.js" type="text/javascript"></script>
         <!-- The dropbox api -->
         <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="idcug02opq4uc1h"></script>
         <!-- Codemirror -->
