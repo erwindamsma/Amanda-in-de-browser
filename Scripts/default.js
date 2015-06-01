@@ -119,6 +119,53 @@ function loadTempFile($fileContent)
     AmandaJSLoad(filepath + "/" + filename);
 }
 
+//Saves the file selected in the open file modal to the server, and loads this file into the codemirror editor
+function uploadAndLoadFile()
+{
+    var formData = new FormData($('#uploadform')[0]);
+    $.ajax({
+        url: 'AmandaJS/uploadAMA.php',  //Server script to process data
+        type: 'POST',
+        /*xhr: function() {  // Custom XMLHttpRequest
+         var myXhr = $.ajaxSettings.xhr();
+         if(myXhr.upload){ // Check if upload property exists
+         myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+         }
+         return myXhr;
+         },*/
+        // Form data
+        data: formData,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false
+
+    }).done(function(data)
+    {
+        if(data.indexOf("OK:") == 0)
+        {
+            //Fileupload succesfull
+            fileContent = data.substring(3);//Without 'OK:' at the start of the string.
+            loadTempFile(fileContent);
+            functionEditor.setValue(fileContent);
+            $('#loadFileModal').modal('hide')
+        }
+        else
+        {
+            showError("Something went wrong uploading your file..");
+        }
+    });
+}
+
+function performClick(elemId) {
+    var elem = document.getElementById(elemId);
+    if(elem && document.createEvent) {
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", true, false);
+        elem.dispatchEvent(evt);
+    }
+}
+
 function loadDropboxFile()
 {
     conf = true;

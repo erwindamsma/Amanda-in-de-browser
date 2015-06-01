@@ -72,7 +72,8 @@
                 <div class="col-md-12">
                     <div class="btn-group" style="margin-right: 10px">
                         <button class="btn btn-default" onclick="clearEditor()"><span class="glyphicon glyphicon-file"></span></button>
-                        <button class="btn btn-default" onclick="loadDropboxFile();"><span class="glyphicon glyphicon-folder-open"></span></button>
+                        <button class="btn btn-default" onclick="performClick('fileUploadInput');" ><span class="glyphicon glyphicon-folder-open"></span></button>
+                        <!-- Use loadDropboxFile() for dropbox loading popup-->
                         <button class="btn btn-default" data-toggle="modal" data-target="#saveFileModal" ><span class="glyphicon glyphicon-floppy-disk"></span> </button>
                     </div>
                     <button id="toggleTime" class="btn btn-default" style="margin-right: 10px" onclick="toggleTime()">Timing</button>
@@ -229,9 +230,26 @@
             <!-- Emscripten compiled amanda code -->
             <script async type="text/javascript" src="AmandaJS/AmandaJS.js"></script>
 
-            <!-- This iframe is used to download files -->
-            <iframe id="downloader" style='display:none;'></iframe>
+
         </div>
 
+        <!-- All hidden input -->
+        <div style="display: none;">
+            <!-- This iframe is used to download files -->
+            <iframe id="downloader" style='display:none;'></iframe>
+
+            <form id="uploadform" style="display: none;">
+                <label for="uploadFile">Browse File:</label> <input id="fileUploadInput" name="uploadFile" type="file" />
+                <input type="button" value="Load File" name="submit" onclick="uploadAndLoadFile();"/>
+            </form>
+            <script>
+                $(document).ready(function(){
+                    $("#fileUploadInput").change(function()
+                    {
+                        uploadAndLoadFile();
+                    });
+                });
+            </script>
+        </div>
     </body>
 </html>
