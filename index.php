@@ -55,7 +55,7 @@
         <script type='text/javascript' src="Scripts/default.js"></script>
 
         <!-- Roboto Mono font -->
-        <link href='http://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
     </head>
     <body>
 
@@ -72,10 +72,6 @@
                         <button class="btn btn-default" onclick="clearEditor()"><span class="glyphicon glyphicon-file"></span></button>
                         <button class="btn btn-default" onclick="loadDropboxFile();"><span class="glyphicon glyphicon-folder-open"></span></button>
                         <button class="btn btn-default" data-toggle="modal" data-target="#saveFileModal" ><span class="glyphicon glyphicon-floppy-disk"></span> </button>
-                    </div>
-                    <div class="btn-group" style="margin-right: 10px">
-                        <button class="btn btn-default" disabled><span class="glyphicon glyphicon-arrow-left"></span></button>
-                        <button class="btn btn-default" disabled><span class="glyphicon glyphicon-arrow-right"></span></button>
                     </div>
                     <button id="toggleTime" class="btn btn-default" style="margin-right: 10px" onclick="toggleTime()">Timing</button>
                     <div class="btn-group">
