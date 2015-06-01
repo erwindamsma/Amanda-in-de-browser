@@ -166,6 +166,46 @@ function loadDropboxFile()
     }
 }
 
+//Saves the file selected in the open file modal to the server, and loads this file into the codemirror editor
+function uploadAndLoadFile()
+{
+    var formData = new FormData($('#uploadform')[0]);
+    $.ajax({
+        url: 'upload.php',  //Server script to process data
+        type: 'POST',
+        /*xhr: function() {  // Custom XMLHttpRequest
+            var myXhr = $.ajaxSettings.xhr();
+            if(myXhr.upload){ // Check if upload property exists
+                myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+            }
+            return myXhr;
+        },*/
+        //Ajax events
+        beforeSend: beforeSendHandler,
+        success: completeHandler,
+        error: errorHandler,
+        // Form data
+        data: formData,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false
+
+    }).done(function(data)
+    {
+        if(data.indexOf("OK:") == 0)
+        {
+            //Fileupload succesfull
+            fileContent = data.substring(3);//Without 'OK:' at the start of the string.
+            loadTempFile(fileContent);
+        }
+        else
+        {
+            showError("Something went wrong uploading your file..");
+        }
+    });
+}
+
 //saveLocal bool, filename string
 function saveEditorToFile(saveLocal, filename)
 {
