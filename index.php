@@ -78,10 +78,10 @@
                     </div>
                     <button id="toggleTime" class="btn btn-default" style="margin-right: 10px" onclick="toggleTime()">Timing</button>
                     <div class="btn-group">
-                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" data-whatever="Functions">Functions</button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/functions.xml')">Functions</button>
 <!--                        <button class="btn btn-default" onclick="loadXml('functions')">Functions</button>-->
-                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" data-whatever="Operators">Operators</button>
-                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" data-whatever="About">About</button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/operators.xml')">Operators</button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/about.xml')">About</button>
                     </div>
                 </div>
             </div>

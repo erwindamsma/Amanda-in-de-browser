@@ -402,42 +402,54 @@ function interpret(value){
 
 
 
-function loadXml(xmlFileName) {
-    var str1 = "xml/";
-    var str2 = xmlFileName;
-    var str3 = ".xml";
-    var urlString = str1.concat(str2,str3);
-    console.log(urlString);
-    $.ajax({
-        url: urlString,
-        dataType: 'xml',
-        success: function (data) {
-            $(' .cus-container-content-help-modal').html("");
-            $(data).find("functions function").each(
-                function () {
-                    var name = $(this).find('name').text();
-                    var parameter = $(this).find('parameter').text();
-                    var inputExample = $(this).find('inputExample').text();
-                    var outputExample = $(this).find('outputExample').text();
-                    var description = $(this).find('description').text();
+function loadXml(fileName) {
+    if (window.XMLHttpRequest)
+    {
+        xhttp = new XMLHttpRequest();
+    }
+    else // code for IE5 and IE6
+    {
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.open("GET",fileName, false);
+    xhttp.send();
+    return xhttp.responseXML;
+}
 
-                    $(' #displayTest').append($('<div>'));
-                    $(' .container-cus-help-modal').append($('<p></p>').text(name));
-                    $(' .container-cus-help-modal').append($('<p></p>').text(parameter));
-                    $(' .container-cus-help-modal').append($('<p></p>').text(inputExample));
-                    $(' .container-cus-help-modal').append($('<p></p>').text(outputExample));
-                    $(' .container-cus-help-modal').append($('<p></p>').text(description));
-                    $( name).append($('</div>'));
 
-                    $(' #displayTest div').addClass('container-cus-help-modal');
-                    $('<div.container-cus-help-modal>').attr('id', name);
+function displayXML (filename){
+    //xmlDoc = loadXml("functions.xml");
+    xmlDoc = loadXml(filename);
+    var modalTitle = ""
+    if(filename === 'xml/functions.xml')
+    {
+        modalTitle = "Functions";
+    } else if (filename === 'xml/operators.xml')
+    {
+        modalTitle = "Operators"
+    } else {
+        modalTitle = "About"
+    }
+    document.getElementById('help-modal').innerHTML = "";
+    document.getElementById('modalTitle').innerHTML = "";
+    _name = xmlDoc.getElementsByTagName("name");
+    _parameter = xmlDoc.getElementsByTagName("parameter");
+    _inputExample = xmlDoc.getElementsByTagName("inputExample");
+    _outputExample = xmlDoc.getElementsByTagName("outputExample");
+    _description = xmlDoc.getElementsByTagName("description");
+    for (i = 0; i < _name.length; i++)
+    {
+        var element = $('<div></div>').addClass("container-help-modal");
 
-                });
-        },
-        error: function () {
-            $(' #displayTest').text('Failed to get feed');
-        }
-    });
+        $(element).append('<div class="helpContent">'+_name[i].childNodes[0].nodeValue+'</div>');
+        $(element).append('<div class="helpContent">'+_parameter[i].childNodes[0].nodeValue+'</div>');
+        $(element).append('<div class="helpContent">'+_inputExample[i].childNodes[0].nodeValue+'</div>');
+        $(element).append('<div class="helpContent">'+_outputExample[i].childNodes[0].nodeValue+'</div>');
+        $(element).append('<div class="helpContent">'+_description[i].childNodes[0].nodeValue+'</div>');
+
+        $('#help-modal').append(element);
+    }
+    $('#exampleModalLabel').append(modalTitle);
 }
 
 //function saveToDropbox(){
