@@ -17,7 +17,7 @@ if ($_FILES["uploadFile"]["size"] > 1024000) {
 }
 
 // Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
+if(isset($_FILES["uploadFile"])) {
     if($uploadedFileType == "ama" || $uploadedFileType == "txt")
     {
         if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {

@@ -171,7 +171,7 @@ function uploadAndLoadFile()
 {
     var formData = new FormData($('#uploadform')[0]);
     $.ajax({
-        url: 'upload.php',  //Server script to process data
+        url: 'AmandaJS/uploadAMA.php',  //Server script to process data
         type: 'POST',
         /*xhr: function() {  // Custom XMLHttpRequest
             var myXhr = $.ajaxSettings.xhr();
@@ -180,10 +180,6 @@ function uploadAndLoadFile()
             }
             return myXhr;
         },*/
-        //Ajax events
-        beforeSend: beforeSendHandler,
-        success: completeHandler,
-        error: errorHandler,
         // Form data
         data: formData,
         //Options to tell jQuery not to process data or worry about content-type.
@@ -198,6 +194,8 @@ function uploadAndLoadFile()
             //Fileupload succesfull
             fileContent = data.substring(3);//Without 'OK:' at the start of the string.
             loadTempFile(fileContent);
+            functionEditor.setValue(fileContent);
+            $('#loadFileModal').modal('hide')
         }
         else
         {
@@ -431,4 +429,13 @@ function loadXml(xmlFileName) {
             $(' #displayTest').text('Failed to get feed');
         }
     });
+}
+
+function performClick(elemId) {
+    var elem = document.getElementById(elemId);
+    if(elem && document.createEvent) {
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", true, false);
+        elem.dispatchEvent(evt);
+    }
 }
