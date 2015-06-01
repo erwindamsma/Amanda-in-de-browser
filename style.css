@@ -64,3 +64,13 @@ body {
     width: 100px;
     margin: 10px;
 }
+.container-help-modal{
+    display: block;
+    float:left;
+    width: 100%;
+}
+.helpContent{
+    display: inline-block;
+    float: left;
+    padding: 10px;
+}

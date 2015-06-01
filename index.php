@@ -76,10 +76,9 @@
                     </div>
                     <button id="toggleTime" class="btn btn-default" style="margin-right: 10px" onclick="toggleTime()">Timing</button>
                     <div class="btn-group">
-                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" data-whatever="Functions">Functions</button>
-<!--                        <button class="btn btn-default" onclick="loadXml('functions')">Functions</button>-->
-                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" data-whatever="Operators">Operators</button>
-                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" data-whatever="About">About</button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/functions.xml')">functions</button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/operators.xml')">operations</button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/about.xml')">about</button>
                     </div>
                 </div>
             </div>
@@ -90,11 +89,10 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="exampleModalLabel">hoi</h4>
+                            <h4 class="modal-title" id="exampleModalLabel"></h4>
                         </div>
                         <div class="modal-body">
-                            <div id="displayTest">
-                            </div>
+                            <div id="help-modal"></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -184,17 +182,6 @@
                     </div>
                 </div>
             </div>
-
-            <script>
-                $('#helpModal').on('show.bs.modal', function (event) {
-                    var button = $(event.relatedTarget)
-                    var category = button.data('whatever')
-                    var cat = category.toLowerCase();
-                    var modal = $(this)
-                    modal.find('.modal-title').text(category)
-                    modal.find('.modal-body div .displayTest').text(loadXml(cat))
-                })
-            </script>
 
             <!--Amanda js code which emscripten normally puts in this page itself-->
             <script type='text/javascript' src="Scripts/AmandaJSpage.js"></script>
