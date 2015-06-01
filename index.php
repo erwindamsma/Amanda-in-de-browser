@@ -70,7 +70,7 @@
                 <div class="col-md-12">
                     <div class="btn-group" style="margin-right: 10px">
                         <button class="btn btn-default" onclick="clearEditor()"><span class="glyphicon glyphicon-file"></span></button>
-                        <button class="btn btn-default" onclick="performClick('fileUploadInput');" ><span class="glyphicon glyphicon-folder-open"></span></button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#loadFileModal" ><span class="glyphicon glyphicon-folder-open"></span></button>
                         <!-- Use loadDropboxFile() for dropbox loading popup-->
                         <button class="btn btn-default" data-toggle="modal" data-target="#saveFileModal" ><span class="glyphicon glyphicon-floppy-disk"></span> </button>
                     </div>
@@ -114,6 +114,27 @@
                         <div class="modal-body">
                             <label for="saveFileName">Filename:</label> <input class="form-control" type="text" name="saveFileName" id="saveFileName"/><br>
                             <button onclick="saveEditorToFile(false, $('#saveFileName').val()); $('#saveFileModal').modal('hide');">Save to Dropbox</button><button onclick="saveEditorToFile(true, $('#saveFileName').val()); $('#saveFileModal').modal('hide');">Download file</button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Load file Modal-->
+            <div class="modal fade" id="loadFileModal" tabindex="-1" role="dialog" aria-labelledby="loadFileModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="loadFileModalLabel">Load File</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="uploadform">
+                                <label for="uploadFile">Browse File:</label> <input name="uploadFile" type="file" />
+                                <input type="submit" value="Load File" name="submit" />
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -205,22 +226,6 @@
             <!-- This iframe is used to download files -->
             <iframe id="downloader" style='display:none;'></iframe>
         </div>
-
-    <!-- All hidden input -->
-    <div style="display: none;">
-        <form id="uploadform" style="display: none;">
-            <label for="uploadFile">Browse File:</label> <input id="fileUploadInput" name="uploadFile" type="file" />
-            <input type="button" value="Load File" name="submit" onclick="uploadAndLoadFile();"/>
-        </form>
-        <script>
-            $(document).ready(function(){
-                $("#fileUploadInput").change(function()
-                {
-                    uploadAndLoadFile();
-                });
-            });
-        </script>
-    </div>
 
     </body>
 </html>
