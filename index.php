@@ -1,6 +1,9 @@
 <?php
+    /*REMOVE THIS PART BEFORE GOING LIVE AS IT ENABLES PHP ERRORS
+    ################################*/
     error_reporting(-1);
     ini_set('display_errors', 'On');
+    /*##############################*/
 
     include("SDKs/dropbox.php");
 ?>
@@ -13,13 +16,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="favicon.ico">
+        <meta name="author" content="Erwin Damsma, Sander Jaasma, Jens Vossnack">
         <title>AmandaOnline</title>
 
-        <!--###########################
-        #########    CSS      #########
-        ############################-->
         <!-- Bootstrap core -->
         <link href="bootstrap/bootstrap.css" rel="stylesheet">
         <!-- AmandaJS -->
@@ -32,10 +31,11 @@
         <link href="style.css" rel="stylesheet">
         <!-- jQueryUI -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+        <!-- Fuelex -->
+        <link href="http://www.fuelcdn.com/fuelux/3.7.1/css/fuelux.min.css" rel="stylesheet"/>
 
-        <!--###########################
-        ######### JavaScript  #########
-        ############################-->
         <!-- Bootstrap core JavaScript
         Place at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -51,6 +51,8 @@
         <script src="codemirror/addon/display/fullscreen.js"></script>
         <!-- Caret plugin-->
         <script src="Scripts/jquery.caret.js"></script>
+        <!-- Fuelex -->
+        <script src="http://www.fuelcdn.com/fuelux/3.7.1/js/fuelux.min.js"></script>
         <!-- Custom -->
         <script type='text/javascript' src="Scripts/default.js"></script>
 
@@ -102,24 +104,50 @@
                 </div>
             </div>
 
+            <?php
+                if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']){
+                    echo '<div class="modal fade" id="saveFileModal" tabindex="-1" role="dialog" aria-labelledby="saveFileModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="saveFileModalLabel">Save File</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul id="myTree" class="tree tree-folder-select" role="tree" id="myTree">
+                                            <li class="tree-branch hide" data-template="treebranch" role="treeitem" aria-expanded="false">
+                                                <div class="tree-branch-header">
+                                                    <button class="glyphicon icon-caret glyphicon-play noStyleButton"><span class="sr-only">Open</span></button>
+                                                    <button class="tree-branch-name noStyleButton">
+                                                        <span class="glyphicon icon-folder glyphicon-folder-close"></span>
+                                                        <span class="tree-label"></span>
+                                                    </button>
+                                                </div>
+                                                <ul class="tree-branch-children" role="group"></ul>
+                                                <div class="tree-loader" role="alert">Loading...</div>
+                                            </li>
+                                            <li class="tree-item hide" data-template="treeitem" role="treeitem">
+                                                <button class="tree-item-name noStyleButton">
+                                                    <span class="glyphicon icon-item fueluxicon-bullet"></span>
+                                                    <span class="tree-label"></span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                        <label for="saveFileName">Filename:</label>
+                                        <input class="form-control" type="text" name="saveFileName" id="saveFileName"/><br>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-default">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+                }
+
+            ?>
             <!--Save file Modal-->
-            <div class="modal fade" id="saveFileModal" tabindex="-1" role="dialog" aria-labelledby="saveFileModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="saveFileModalLabel">Save File</h4>
-                        </div>
-                        <div class="modal-body">
-                            <label for="saveFileName">Filename:</label> <input class="form-control" type="text" name="saveFileName" id="saveFileName"/><br>
-                            <button onclick="saveEditorToFile(false, $('#saveFileName').val()); $('#saveFileModal').modal('hide');">Save to Dropbox</button><button onclick="saveEditorToFile(true, $('#saveFileName').val()); $('#saveFileModal').modal('hide');">Download file</button>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
             <!--Functions textarea-->
             <div class="row">
