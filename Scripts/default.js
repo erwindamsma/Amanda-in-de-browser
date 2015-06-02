@@ -453,11 +453,15 @@ function displayXML (filename){
 }
 
 function saveToDropbox(amatext) {
+    var request = $.post("dropboxupload.php", {
+        editorValue: amatext,
+        fileName: $('#saveFileName').val() });
 
-    var request = $.post("dropboxupload.php", { editorValue: amatext, fileName: $('#saveFileName').val() })
-    .done(function(data){
-            $("#mybox").html(data);
-    }).fail(function(jqXHR, textStatus) {
+    request.done(function(msg){
+        $("#mybox").html(msg);
+    });
+
+    request.fail(function(jqXHR, textStatus) {
         alert( "Request failed: " + textStatus );
     });
 }
