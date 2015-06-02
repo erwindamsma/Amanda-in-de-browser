@@ -441,11 +441,11 @@ function displayXML (filename){
     {
         var element = $('<div></div>').addClass("container-help-modal");
 
-        $(element).append('<div class="helpContent">'+_name[i].childNodes[0].nodeValue+'</div>');
-        $(element).append('<div class="helpContent">'+_parameter[i].childNodes[0].nodeValue+'</div>');
-        $(element).append('<div class="helpContent">'+_inputExample[i].childNodes[0].nodeValue+'</div>');
-        $(element).append('<div class="helpContent">'+_outputExample[i].childNodes[0].nodeValue+'</div>');
-        $(element).append('<div class="helpContent">'+_description[i].childNodes[0].nodeValue+'</div>');
+        $(element).append('<p class="helpContent">'+_name[i].childNodes[0].nodeValue+'</p>');
+        $(element).append('<p class="helpContent">'+_parameter[i].childNodes[0].nodeValue+'</p>');
+        $(element).append('<p class="helpContent">'+_inputExample[i].childNodes[0].nodeValue+'</p>');
+        $(element).append('<p class="helpContent">'+_outputExample[i].childNodes[0].nodeValue+'</p>');
+        $(element).append('<p class="helpContent">'+_description[i].childNodes[0].nodeValue+'</p>');
 
         $('#help-modal').append(element);
     }

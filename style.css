@@ -50,17 +50,18 @@ body {
     }
 }
 
-.cus-container-help-modal{
-    display: inline-block;
+.container-help-modal{
+    display: block;
     float: left;
-    border: 1px solid black;
-    width: 100%;
-    height: 200px;
+    border: 1px dashed red;
 }
-.cus-container-content-help-modal{
+.helpContent{
     display: inline-block;
     float: left;
     border: 1px solid black;
-    width: 100px;
-    margin: 10px;
+    padding: 10px;
+}
+#help-modal-close{
+    display: block;
+    clear: both;
 }
