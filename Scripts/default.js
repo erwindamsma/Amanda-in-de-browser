@@ -439,13 +439,13 @@ function displayXML (filename){
     _description = xmlDoc.getElementsByTagName("description");
     for (i = 0; i < _name.length; i++)
     {
-        var element = $('<div></div>').addClass("container-help-modal");
+        var element = $('<tr></tr>').addClass("row-help-modal");
 
-        $(element).append('<p class="helpContent">'+_name[i].childNodes[0].nodeValue+'</p>');
-        $(element).append('<p class="helpContent">'+_parameter[i].childNodes[0].nodeValue+'</p>');
-        $(element).append('<p class="helpContent">'+_inputExample[i].childNodes[0].nodeValue+'</p>');
-        $(element).append('<p class="helpContent">'+_outputExample[i].childNodes[0].nodeValue+'</p>');
-        $(element).append('<p class="helpContent">'+_description[i].childNodes[0].nodeValue+'</p>');
+        $(element).append('<td class="td-helpContent name">'+_name[i].childNodes[0].nodeValue+'</td>');
+        $(element).append('<td class="td-helpContent parameter">'+_parameter[i].childNodes[0].nodeValue+'</td>');
+        $(element).append('<td class="td-helpContent inputExample">'+_inputExample[i].childNodes[0].nodeValue+'</td>');
+        $(element).append('<td class="td-helpContent outputExample">'+_outputExample[i].childNodes[0].nodeValue+'</td>');
+        $(element).append('<td class="td-helpContent description">'+_description[i].childNodes[0].nodeValue+'</td>');
 
         $('#help-modal').append(element);
     }
