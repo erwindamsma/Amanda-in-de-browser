@@ -137,16 +137,16 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="saveFileModalLabel">Save File</h4>
+                                        <h4 class="modal-title" id="saveFileModalLabel">Save to your Dropbox</h4>
                                     </div>
                                     <div class="modal-body">
-                                        
                                         <label for="saveFileName">Filename:</label>
                                         <input class="form-control" type="text" name="saveFileName" id="saveFileName"/><br>
+                                        <div id="mybox"></div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-default">Save</button>
+                                        <button type="button" class="btn btn-default" onclick="saveToDropbox(document.getElementById("saveFileName").value, functionEditor.getValue())">Save</button>
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +171,6 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active"><a href="#console" role="tab" data-toggle="tab">Console</a></li>
                             <li role="presentation"><a id="errorListTabTitle" href="#errorlist" role="tab" data-toggle="tab">Error List (0)</a></li>
-                            <li role="presentation"><a href="#graphic" role="tab" data-toggle="tab">Graphic</a></li>
                         </ul>
                         <!-- Panes -->
                         <div class="tab-content">
@@ -189,9 +188,6 @@
                             </div>
                             <div role="tabpanel" class="tab-pane" id="errorlist">
                                 <div id="errorArea"><!-- Messages are shown here --></div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="graphic">
-                                <h2>Graphic is not (yet) implemented.</h2>
                             </div>
                         </div>
                     </div>
