@@ -107,7 +107,6 @@
                     <button id="toggleTime" class="btn btn-default" style="margin-right: 10px" onclick="toggleTime()">Timing</button>
                     <div class="btn-group">
                         <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/functions.xml')">Functions</button>
-<!--                        <button class="btn btn-default" onclick="loadXml('functions')">Functions</button>-->
                         <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/operators.xml')">Operators</button>
                         <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/about.xml')">About</button>
                     </div>
@@ -120,10 +119,10 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="exampleModalLabel">hoi</h4>
+                            <h4 class="modal-title" id="exampleModalLabel"></h4>
                         </div>
                         <div class="modal-body">
-                            <div id="displayTest">
+                            <div id="help-modal">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -214,7 +213,7 @@
                 </div>
             </div>
 
-            <script>
+      <!--      <script>
                 $('#helpModal').on('show.bs.modal', function (event) {
                     var button = $(event.relatedTarget)
                     var category = button.data('whatever')
@@ -223,7 +222,7 @@
                     modal.find('.modal-title').text(category)
                     modal.find('.modal-body div .displayTest').text(loadXml(cat))
                 })
-            </script>
+            </script> -->
 
             <!--Amanda js code which emscripten normally puts in this page itself-->
             <script type='text/javascript' src="Scripts/AmandaJSpage.js"></script>
