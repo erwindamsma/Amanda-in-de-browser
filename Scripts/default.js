@@ -431,7 +431,7 @@ function displayXML (filename){
         modalTitle = "About"
     }
     document.getElementById('help-modal').innerHTML = "";
-    document.getElementById('modalTitle').innerHTML = "";
+    document.getElementById('exampleModalLabel').innerHTML = "";
     _name = xmlDoc.getElementsByTagName("name");
     _parameter = xmlDoc.getElementsByTagName("parameter");
     _inputExample = xmlDoc.getElementsByTagName("inputExample");
