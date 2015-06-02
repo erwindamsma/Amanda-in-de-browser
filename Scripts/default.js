@@ -452,8 +452,17 @@ function displayXML (filename){
     $('#exampleModalLabel').append(modalTitle);
 }
 
-//function saveToDropbox(){
-//    var functionsBoxContent = functionEditor.getValue();
-//    var functionsBoxContent =
-//    new Ajax.Request('')
-//}
+function saveToDropbox(name, amatext) {
+    var request = $.ajax({
+        url: "SDKs/dropboxupload.php",
+        type: "GET",
+        dataType: "html"
+    });
+    request.done(function(msg) {
+        $("#mybox").html(msg);
+    });
+
+    request.fail(function(jqXHR, textStatus) {
+        alert( "Request failed: " + textStatus );
+    });
+}
