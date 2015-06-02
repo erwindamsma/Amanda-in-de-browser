@@ -457,35 +457,3 @@ function displayXML (filename){
 //    var functionsBoxContent =
 //    new Ajax.Request('')
 //}
-function staticDataSource(openedParentData, callback) {
-    childNodesArray = [
-        { "name": "Ascending and Descending", "type": "folder" },
-        { "name": "Sky and Water I", "type": "item" },
-        { "name": "Drawing Hands", "type": "folder" },
-        { "name": "waterfall", "type": "item" },
-        { "name": "Belvedere", "type": "folder" },
-        { "name": "Relativity", "type": "item" },
-        { "name": "House of Stairs", "type": "folder" },
-        { "name": "Convex and Concave", "type": "item" }
-    ];
-
-    callback({
-        data: childNodesArray
-    });
-}
-$(function() {
-    $('#myTree').tree({
-        dataSource: staticDataSource,
-        multiSelect: false,
-        folderSelect: true
-    });
-});
-$('#myTree').on('deselected.fu.tree selected.fu.tree', function(event) {
-    // insert JSON text of selected items after tree
-    $('#myTree').after('SELECTED ITEMS: ' + JSON.stringify( $('#myTree').tree('selectedItems') ) + '<br>' );
-});
-
-$('#myTree').on('disclosedFolder.fu.tree closed.fu.tree', function(event, parentData) {
-    // insert JSON text of selected items after tree
-    $('#myTree').after('OPENED/CLOSED FOLDER DATA: ' + JSON.stringify( parentData ) + ' ' );
-});
