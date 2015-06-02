@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-default" onclick="saveToDropbox(document.getElementById("saveFileName").value, functionEditor.getValue())">Save</button>
+                                        <button type="button" class="btn btn-default" onclick=" saveToDropbox(functionEditor.getValue());" >Save</button>
                                     </div>
                                 </div>
                             </div>

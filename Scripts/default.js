@@ -152,7 +152,7 @@ function uploadAndLoadFile()
         }
         else
         {
-            showError("Something went wrong uploading your file..");
+            showInfo("Something went wrong uploading your file: " );
         }
     });
 }
@@ -452,17 +452,12 @@ function displayXML (filename){
     $('#exampleModalLabel').append(modalTitle);
 }
 
-function saveToDropbox(name, amatext) {
-    var request = $.ajax({
-        url: "SDKs/dropboxupload.php",
-        type: "GET",
-        dataType: "html"
-    });
-    request.done(function(msg) {
-        $("#mybox").html(msg);
-    });
+function saveToDropbox(amatext) {
 
-    request.fail(function(jqXHR, textStatus) {
+    var request = $.post("SDKs/dropboxupload.php", { editorValue: amatext, fileName: $('#saveFileName').val() })
+    .done(function(data){
+            $("#mybox").html(data);
+    }).fail(function(jqXHR, textStatus) {
         alert( "Request failed: " + textStatus );
     });
 }
