@@ -96,9 +96,12 @@
                 <div class="col-md-12">
                     <div class="btn-group" style="margin-right: 10px">
                         <button class="btn btn-default" onclick="clearEditor()"><span class="glyphicon glyphicon-file"></span></button>
-                        <button class="btn btn-default" onclick="performClick('fileUploadInput');" ><span class="glyphicon glyphicon-folder-open"></span></button>
-                        <!-- Use loadDropboxFile() for dropbox loading popup-->
-                        <button class="btn btn-default" data-toggle="modal" data-target="#saveFileModal" ><span class="glyphicon glyphicon-floppy-disk"></span> </button>
+                        <button class="btn btn-default" onclick="performClick('fileUploadInput');"><span class="glyphicon glyphicon-folder-open" style=""></span></button>
+                        <button class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+                    </div>
+                    <div class="btn-group" style="margin-right: 10px">
+                        <button <? if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn']){echo 'disabled';} ?> class="btn btn-default" data-toggle="modal" data-target="#openFileModal"><span class="fa fa-cloud-download"></span> </button>
+                        <button <? if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn']){echo 'disabled';} ?> class="btn btn-default" data-toggle="modal" data-target="#saveFileModal" onclick="document.getElementById('saveButtonForDropbox').disabled = false; document.getElementById('mybox').innerHTML = ''; document.getElementById('saveFileName').value = ''"><span class="fa fa-cloud-upload"></span> </button>
                     </div>
                     <button id="toggleTime" class="btn btn-default" style="margin-right: 10px" onclick="toggleTime()">Timing</button>
                     <div class="btn-group">
@@ -148,15 +151,14 @@
                                         <div id="mybox"></div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-default" onclick="saveToDropbox(functionEditor.getValue());" >Save</button>
+                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                                        <button type="button" class="btn btn-default" id="saveButtonForDropbox" onclick="saveToDropbox(functionEditor.getValue()); this.disabled = true">Save</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     ';
                 }
-
             ?>
 
             <!--Functions textarea-->

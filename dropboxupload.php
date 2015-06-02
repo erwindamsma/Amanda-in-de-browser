@@ -15,6 +15,4 @@
     fclose($fileToSave);
     unlink($_SESSION['accountInfo']['uid'] . $_POST['fileName']);
 
-    echo '<p>Hi I am some random ' . rand() .' output from the server.</p>';
-    echo "<br>En de filenaam is ".$_POST['fileName']." en de content is: ".$_POST['editorValue'];
 ?>
