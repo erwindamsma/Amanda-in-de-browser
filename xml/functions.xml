@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <functions type="array">
+    <function>
+        <name>hoi</name>
+        <parameter>doie</parameter>
+        <inputExample>ag</inputExample>
+        <outputExample>asdf</outputExample>
+        <description>ads</description>
+    </function>
 	<function>
 		<name>abs</name>
 		<parameter>num</parameter>
@@ -28,4 +35,11 @@
 		<outputExample>3</outputExample>
 		<description>Returns the square root of a number.</description>
 	</function>
+    <function>
+        <name>sqrt</name>
+        <parameter>num</parameter>
+        <inputExample>sqrt 9</inputExample>
+        <outputExample>3</outputExample>
+        <description>Returns the square root of a number.</description>
+    </function>
 </functions>

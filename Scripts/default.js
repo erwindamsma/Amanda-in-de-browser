@@ -421,6 +421,7 @@ function displayXML (filename){
     //xmlDoc = loadXml("functions.xml");
     xmlDoc = loadXml(filename);
     var modalTitle = ""
+
     if(filename === 'xml/functions.xml')
     {
         modalTitle = "Functions";
@@ -430,13 +431,17 @@ function displayXML (filename){
     } else {
         modalTitle = "About"
     }
+
     document.getElementById('help-modal').innerHTML = "";
     document.getElementById('exampleModalLabel').innerHTML = "";
+
     _name = xmlDoc.getElementsByTagName("name");
     _parameter = xmlDoc.getElementsByTagName("parameter");
     _inputExample = xmlDoc.getElementsByTagName("inputExample");
     _outputExample = xmlDoc.getElementsByTagName("outputExample");
     _description = xmlDoc.getElementsByTagName("description");
+
+
     for (i = 0; i < _name.length; i++)
     {
         var element = $('<tr></tr>').addClass("row-help-modal");
