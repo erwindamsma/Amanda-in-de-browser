@@ -64,9 +64,3 @@ body {
     width: 100px;
     margin: 10px;
 }
-
-.noStyleButton {
-    border: none;
-    padding: 0;
-    background: none;
-}
