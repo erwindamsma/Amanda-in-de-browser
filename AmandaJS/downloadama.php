@@ -30,6 +30,8 @@ if(isset($_GET['filename']))
     $filePath = $_SERVER['HTTP_HOST'].$dir.$fileUrlLocation.$fileName;
 
     echo readfile("http://". $filePath);
+
+    unlink($fileName);
 }
 
 

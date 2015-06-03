@@ -23,6 +23,7 @@ if(isset($_FILES["uploadFile"])) {
         if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
             echo "OK:";
             readfile($target_file);
+            unlink($target_file);
         } else {
             echo "There was an error uploading your file.";
         }

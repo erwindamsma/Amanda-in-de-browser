@@ -16,7 +16,7 @@ CodeMirror.defineSimpleMode("amandamode", {
 	
 	// You can match multiple tokens at once. Note that the captured
     // groups must span the whole string in this case
-	{regex: /^(?:([\w]+)?([^=]*?)(=))/, token: ["functionname","variable","operator"]},
+	{regex: /([\w]+)([^=]*)=/, token: ["functionname", "variable"]},
 	
     {regex: /(\+|-|\*|\/\\|\^|\/|\\\/|mod|%|=|~|~=|>|<|>=|<=|\+\+|--|:|::)/, token: "operator"},
     // indent and dedent properties guide autoindentation
