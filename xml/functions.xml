@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <functions type="array">
+    <!--Number/character-->
     <function>
         <name>Name</name>
         <parameter>Parameter</parameter>
@@ -188,5 +189,202 @@
         <inputExample>timedate</inputExample>
         <outputExample>(7,36,18,15,5,2013)</outputExample>
         <description>Return the datetime in a tuple (sec, min, hour, day, month, year).</description>
+    </function>
+    <!--List/String-->
+    <function>
+        <name>#</name>
+        <parameter>[...]</parameter>
+        <inputExample>#[3,5,2,7]</inputExample>
+        <outputExample>4</outputExample>
+        <description>Returns the count of items in the list.</description>
+    </function>
+    <function>
+        <name>hd</name>
+        <parameter>[...]</parameter>
+        <inputExample>hd[1,2,3]</inputExample>
+        <outputExample>1</outputExample>
+        <description>Returns the first item (head) from the list.</description>
+    </function>
+    <function>
+        <name>tl</name>
+        <parameter>[...]</parameter>
+        <inputExample>tl[1,2,3]</inputExample>
+        <outputExample>[2,3]</outputExample>
+        <description>Returns the last items(tail) from the list.</description>
+    </function>
+    <function>
+        <name>min</name>
+        <parameter>[...]</parameter>
+        <inputExample>min[4,1,2,6,7]</inputExample>
+        <outputExample>1</outputExample>
+        <description>Returns the lowest value from the list.</description>
+    </function>
+    <function>
+        <name>max</name>
+        <parameter>[...]</parameter>
+        <inputExample>max[3,8,5]</inputExample>
+        <outputExample>8</outputExample>
+        <description>Returns the highest value from the list.</description>
+    </function>
+    <function>
+        <name>sum</name>
+        <parameter>[num]</parameter>
+        <inputExample>sum[1,2,3,4]</inputExample>
+        <outputExample>10</outputExample>
+        <description>Returns the sum of all numbers in the list.</description>
+    </function>
+    <function>
+        <name>prod</name>
+        <parameter>[num]</parameter>
+        <inputExample>prod[1,2,3,4]</inputExample>
+        <outputExample>24</outputExample>
+        <description>Returns the product of all numbers in the list.</description>
+    </function>
+    <function>
+        <name>take</name>
+        <parameter>num[...]</parameter>
+        <inputExample>take 3[5,6,7,8,9,1,2]</inputExample>
+        <outputExample>[5,6,7]</outputExample>
+        <description>Returns a list with only the first X items.</description>
+    </function>
+    <function>
+        <name>drop</name>
+        <parameter>num[...]</parameter>
+        <inputExample>drop 3[5,6,7,8,9,1,2]</inputExample>
+        <outputExample>[8,9,1,2]</outputExample>
+        <description>Returns a list without the first X items.</description>
+    </function>
+    <function>
+        <name>takewhile</name>
+        <parameter>(bool)[...]</parameter>
+        <inputExample>takewhile(&#60;5)[1..9]</inputExample>
+        <outputExample>[1,2,3,4]</outputExample>
+        <description>Takes items form the list till the expression becomes false.</description>
+    </function>
+    <function>
+        <name>dropwhile</name>
+        <parameter>(bool)[...]</parameter>
+        <inputExample>dropwhil(&#60;5)[1..9]</inputExample>
+        <outputExample>[5,6,7,8,9]</outputExample>
+        <description>Drops itmes form the list till the expression becomes false.</description>
+    </function>
+    <function>
+        <name>filter</name>
+        <parameter>(bool)[...]</parameter>
+        <inputExample>filter (&#62;=10)[1.15]</inputExample>
+        <outputExample>[11,12,13,14,15]</outputExample>
+        <description>Filters out all the items that do not match the condition</description>
+    </function>
+    <function>
+        <name>and</name>
+        <parameter>[bool]</parameter>
+        <inputExample>and[1&#60; 2,4 &#60; 9]</inputExample>
+        <outputExample>True</outputExample>
+        <description>Returns the truthvalue of the Boolean and-statement.</description>
+    </function>
+    <function>
+        <name>or</name>
+        <parameter>[bool]</parameter>
+        <inputExample>or[8&#60;2,4&#60;9}</inputExample>
+        <outputExample>True</outputExample>
+        <description>Returns the truthvalue of the Boolean or-statement.</description>
+    </function>
+    <function>
+        <name>member</name>
+        <parameter>[...] ...</parameter>
+        <inputExample>member "Hello" 'e'</inputExample>
+        <outputExample>True</outputExample>
+        <description>Checks if the list contains a specific item.</description>
+    </function>
+    <function>
+        <name>empty</name>
+        <parameter>[...]</parameter>
+        <inputExample>empty[1,2,3]</inputExample>
+        <outputExample>False</outputExample>
+        <description>Checks if the list is empty.</description>
+    </function>
+    <function>
+        <name>merge</name>
+        <parameter>[...] [...]</parameter>
+        <inputExample>merge [1,2,3] [2,7,6]</inputExample>
+        <outputExample>[1,2,2,3,7,6]</outputExample>
+        <description>Merges two lists together by comparing each item in the first list to the item in the second.</description>
+    </function>
+    <function>
+        <name>concat</name>
+        <parameter>[[...],[...]]</parameter>
+        <inputExample>concat["ama","nda"]</inputExample>
+        <outputExample>"amanda"</outputExample>
+        <description>Concatenates two lists.</description>
+    </function>
+    <function>
+        <name>zip</name>
+        <parameter>([...],[...])</parameter>
+        <inputExample>zip([1,2,3,4],["am","an","da"])</inputExample>
+        <outputExample>[(1,"am"),(2,"an"),(3,"da")]</outputExample>
+        <description>Zips two lists into a list  of X tuples. X is the count of items in the shortest list.</description>
+    </function>
+    <function>
+        <name>zip2</name>
+        <parameter>[...] [...]</parameter>
+        <inputExample>zip2 [1,2,3] ["am","an","da"]</inputExample>
+        <outputExample>[(1,"am"),(2,"an"),(3,"da")]</outputExample>
+        <description>Zips two lists into a list of X tuples. X is the count of items in the shortest list.</description>
+    </function>
+    <function>
+        <name>zip3</name>
+        <parameter>[...] [...] [...]</parameter>
+        <inputExample>zip3 [1,2,3] ["am","an","da"] [4,5,6]</inputExample>
+        <outputExample>[(1,"am",4),(2,"an",5),(3,"da",6)]</outputExample>
+        <description>Zips three lists into a list of X tuples. X is the count of items in the shortest list.</description>
+    </function>
+    <function>
+        <name>split</name>
+        <parameter>num [...]</parameter>
+        <inputExample>split 3 [5,2,6,8,1,9]</inputExample>
+        <outputExample>([5,2,6],[8,1,9])</outputExample>
+        <description>Splits the list in two at the specific index.</description>
+    </function>
+    <function>
+        <name>splitwhile</name>
+        <parameter>(bool) [...]</parameter>
+        <inputExample>splitwhile (&#60;6) [1..10]</inputExample>
+        <outputExample>([1,2,3,4,5],[6,7,8,9,10])</outputExample>
+        <description>Splits the list in two when the expression becomes false.</description>
+    </function>
+    <function>
+        <name></name>
+        <parameter></parameter>
+        <inputExample></inputExample>
+        <outputExample></outputExample>
+        <description></description>
+    </function>
+    <function>
+        <name>coordsToString</name>
+        <parameter>(num, num)</parameter>
+        <inputExample>CoordsToString(20,41)</inputExample>
+        <outputExample>["20","41"]</outputExample>
+        <description>Converts a tuple of two numbers into a list of two strings.</description>
+    </function>
+    <function>
+        <name>ljustify</name>
+        <parameter>num [char]</parameter>
+        <inputExample>ljustify 3 "a"</inputExample>
+        <outputExample>"a  "</outputExample>
+        <description>Adds length to the string if necessary, and alligns the string to the left.</description>
+    </function>
+    <function>
+        <name>rjustify</name>
+        <parameter>num [char]</parameter>
+        <inputExample>rjustify 3 "a"</inputExample>
+        <outputExample>"  a"</outputExample>
+        <description>Adds length to the string if necessary, and alligns the string to  the right.</description>
+    </function>
+    <function>
+        <name>cjustify</name>
+        <parameter>num [char]</parameter>
+        <inputExample>cjustify 3 "a"</inputExample>
+        <outputExample>" a "</outputExample>
+        <description>Adds length to the string if necessary, and centers the string.</description>
     </function>
 </functions>
