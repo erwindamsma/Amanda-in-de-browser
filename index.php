@@ -5,7 +5,19 @@
     ini_set('display_errors', 'On');
     /*##############################*/
 
+    use \Dropbox as dbx;
     include("SDKs/dropbox.php");
+
+    $functionFileLines = "";
+    if (isset($_GET['loadDBFile'])){
+        $f = fopen($_SESSION['accountInfo']['uid'] . $_GET['loadDBFile'], 'w+r');
+        $_SESSION['dbxClient']->getFile('/' . $_GET['loadDBFile'], $f);
+        while(($buffer = fgets($f, 4096)) !== false){
+            $functionFileLines = $functionFileLines . $buffer;
+        }
+        fclose($f);
+        unlink($_SESSION['accountInfo']['uid'] . $_GET['loadDBFile']);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -137,6 +149,7 @@
             <!-- Dropbox save file Modal-->
             <?php
                 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']){
+                    $folderMetadata = $_SESSION['dbxClient']->getMetadataWithChildren("/");
                     echo '
                         <div class="modal fade" id="saveFileModal" tabindex="-1" role="dialog" aria-labelledby="saveFileModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -157,6 +170,32 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal fade" id="openFileModal" tabindex="-1" role="dialog" aria-labelledby="openFileModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="openFileModalLabel">Open from your Dropbox</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table>
+                    ';
+                                            foreach ($folderMetadata['contents'] as $content){
+                                                if(!$content['is_dir']){
+                                                    $fileName = substr($content['path'], 1);
+                                                    echo '<div><a href="?loadDBFile=' . $fileName . '">' . $fileName . '</a></div>';
+                                                }
+
+                                            }
+                    echo '
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" id="openButtonForDropbox" data-dismiss="modal">Open</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     ';
                 }
             ?>
@@ -164,7 +203,7 @@
             <!--Functions textarea-->
             <div class="row">
                 <div class="col-md-12">
-                    <textarea id="functions" class="form-control" rows="12" onblur="loadTempFile();"></textarea>
+                    <textarea id="functions" class="form-control" rows="12" onblur="loadTempFile();"><? print $functionFileLines ?></textarea>
                 </div>
             </div>
 
