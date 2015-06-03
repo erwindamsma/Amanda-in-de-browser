@@ -1,3 +1,11 @@
+|| amanda.ini, Dick Bruin
+
+|| MemorySize  = 200000
+|| WinFontName = "Courier New"
+|| WinFontSize = 10
+|| ConPromptSingle  = "> "
+|| ConPromptMulti = ">>> "
+
 rep:: * -> num -> [*]
 
 rep x n = [x | k <- [1..n]]

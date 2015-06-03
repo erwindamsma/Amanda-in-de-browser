@@ -214,7 +214,7 @@ function loadDropboxFile()
 }
 
 //saveLocal bool, filename string
-function saveEditorToFile(saveLocal, filename)
+function saveEditorToFile(filename)
 {
     var jqxhr = $.post( "AmandaJS/saveEditor.php", { editorValue: functionEditor.getValue(), fileName: filename })
         .done(function(data) {
@@ -222,24 +222,10 @@ function saveEditorToFile(saveLocal, filename)
             {
                 uploadedFileUrl = "http://"+data.substring(3);//Without 'OK:' at the start of the string.
 
-                if(saveLocal) {
                     //Download file via hidden iFrame
                     document.getElementById('downloader').src = uploadedFileUrl;
                     showInfo("<b>Saved File</b><br>Check your downloads.")
                     console.log(uploadedFileUrl);
-                }
-                else
-                {
-                    var options = {
-                        success: function () {
-                            // Indicate to the user that the files have been saved.
-                            showInfo("Successfully saved files to your Dropbox.");
-                        }
-                    };
-                    //console.log(uploadedFileUrl);
-                    Dropbox.save(uploadedFileUrl, filename+".ama", options);
-                }
-
             }
             else
             {
@@ -301,6 +287,7 @@ function clearEditor()
     if(conf)
     {
         functionEditor.setValue("");
+        $('#saveFileName').val("untitiled.ama");
         showInfo("<b>Cleared Editor</b>")
     }
     else
@@ -463,10 +450,20 @@ function saveToDropbox(amatext) {
         fileName: $('#saveFileName').val() });
 
     request.done(function(msg){
-        $("#mybox").html(msg);
+        showInfo("Saved file to dropbox.")
     });
 
     request.fail(function(jqXHR, textStatus) {
-        alert( "Request failed: " + textStatus );
+        showWarning( "Request failed: " + textStatus );
     });
+}
+
+function fileNameChange()
+{
+    //If the value of saveFileName input doesn't have '.ama' at the end, append it.
+    if($('#saveFileName').val().indexOf(".ama") < 0 || $('#saveFileName').val().indexOf(".ama") != $('#saveFileName').val().length - 4)
+    {
+        $('#saveFileName').val($('#saveFileName').val()+".ama");
+    }
+
 }
