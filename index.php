@@ -12,10 +12,8 @@
     if (isset($_GET['loadDBFile'])){
         $f = fopen($_SESSION['accountInfo']['uid'] . $_GET['loadDBFile'], 'w+r');
         $_SESSION['dbxClient']->getFile('/' . $_GET['loadDBFile'], $f);
-        while(($buffer = fgets($f, 4096)) !== false){
-            $functionFileLines = $functionFileLines . $buffer;
-        }
         fclose($f);
+        $functionFileLines = file_get_contents($_SESSION['accountInfo']['uid'] . $_GET['loadDBFile']);
         unlink($_SESSION['accountInfo']['uid'] . $_GET['loadDBFile']);
     }
 ?>
@@ -29,7 +27,7 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="Erwin Damsma, Sander Jaasma, Jens Vossnack">
-        <title>AmandaOnline</title>
+        <title>AmandaJS</title>
 
         <!-- Bootstrap core -->
         <link rel="stylesheet" href="bootstrap/bootstrap.css">
@@ -203,7 +201,7 @@
             <!--Functions textarea-->
             <div class="row">
                 <div class="col-md-12">
-                    <textarea id="functions" class="form-control" rows="12" onblur="loadTempFile();"><? print $functionFileLines ?></textarea>
+                    <textarea id="functions" class="form-control" rows="12" onblur="loadTempFile();"><? echo $functionFileLines ?></textarea>
                 </div>
             </div>
 
