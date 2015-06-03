@@ -107,17 +107,20 @@
                     <div class="btn-group" style="margin-right: 10px">
                         <button class="btn btn-default" onclick="clearEditor()"><span class="glyphicon glyphicon-file"></span></button>
                         <button class="btn btn-default" onclick="performClick('fileUploadInput');"><span class="glyphicon glyphicon-folder-open" style=""></span></button>
-                        <button class="btn btn-default"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+                        <button class="btn btn-default" onclick="saveEditorToFile(document.getElementById('saveFileName').value);"><span class="glyphicon glyphicon-floppy-disk"></span></button>
                     </div>
                     <div class="btn-group" style="margin-right: 10px">
                         <button <? if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn']){echo 'disabled';} ?> class="btn btn-default" data-toggle="modal" data-target="#openFileModal"><span class="fa fa-cloud-download"></span> </button>
-                        <button <? if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn']){echo 'disabled';} ?> class="btn btn-default" data-toggle="modal" data-target="#saveFileModal" onclick="document.getElementById('saveButtonForDropbox').disabled = false; document.getElementById('mybox').innerHTML = ''; document.getElementById('saveFileName').value = ''"><span class="fa fa-cloud-upload"></span> </button>
+                        <button <? if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn']){echo 'disabled';} ?> class="btn btn-default" onclick="saveToDropbox(functionEditor.getValue());"><span class="fa fa-cloud-upload"></span> </button>
                     </div>
                     <button id="toggleTime" class="btn btn-default" style="margin-right: 10px" onclick="toggleTime()">Timing</button>
                     <div class="btn-group">
                         <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/functions.xml')">Functions</button>
                         <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/operators.xml')">Operators</button>
                         <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/about.xml')">About</button>
+                    </div>
+                    <div class="btn-group">
+                        <input class="form-control" onchange="fileNameChange();" value="untitiled.ama" type="text" name="saveFileName" id="saveFileName"/>
                     </div>
                 </div>
             </div>
@@ -149,25 +152,6 @@
                 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']){
                     $folderMetadata = $_SESSION['dbxClient']->getMetadataWithChildren("/");
                     echo '
-                        <div class="modal fade" id="saveFileModal" tabindex="-1" role="dialog" aria-labelledby="saveFileModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="saveFileModalLabel">Save to your Dropbox</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <label for="saveFileName">Filename:</label>
-                                        <input class="form-control" type="text" name="saveFileName" id="saveFileName"/><br>
-                                        <div id="mybox"></div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                                        <button type="button" class="btn btn-default" id="saveButtonForDropbox" onclick="saveToDropbox(functionEditor.getValue()); this.disabled = true">Save</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="modal fade" id="openFileModal" tabindex="-1" role="dialog" aria-labelledby="openFileModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
