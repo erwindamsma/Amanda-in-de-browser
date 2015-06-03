@@ -42,4 +42,151 @@
         <outputExample>3</outputExample>
         <description>Returns the square root of a number.</description>
     </function>
+    <function>
+        <name>code</name>
+        <parameter>char</parameter>
+        <inputExample>code 'a'</inputExample>
+        <outputExample>97</outputExample>
+        <description>Returns the ASCII-code of a character.</description>
+    </function>
+    <function>
+        <name>decode</name>
+        <parameter>num</parameter>
+        <inputExample>decode 97</inputExample>
+        <outputExample>a</outputExample>
+        <description>Returns the character of an ASCII-code.</description>
+    </function>
+    <function>
+        <name>ftoa</name>
+        <parameter>num</parameter>
+        <inputExample>ftoa 3</inputExample>
+        <outputExample>"3"</outputExample>
+        <description>Converts a float to a string.</description>
+    </function>
+    <function>
+        <name>itoa</name>
+        <parameter>num</parameter>
+        <inputExample>itoa 3</inputExample>
+        <outputExample>"3"</outputExample>
+        <description>Converts a integer to a string.</description>
+    </function>
+    <function>
+        <name>atof</name>
+        <parameter>[char]</parameter>
+        <inputExample>atof"3.14"</inputExample>
+        <outputExample>3.14</outputExample>
+        <description>Converts a string to a float.</description>
+    </function>
+    <function>
+        <name>atoi</name>
+        <parameter>[char]</parameter>
+        <inputExample>atoi"3.14"</inputExample>
+        <outputExample>3</outputExample>
+        <description>Converts a string to an integer.</description>
+    </function>
+    <function>
+        <name>isupper</name>
+        <parameter>char</parameter>
+        <inputExample>isupper'A'</inputExample>
+        <outputExample>True</outputExample>
+        <description>Checks if the character is uppercase.</description>
+    </function>
+    <function>
+        <name>islower</name>
+        <parameter>char</parameter>
+        <inputExample>islower'a'</inputExample>
+        <outputExample>True</outputExample>
+        <description>Checks if the character is lowercase.</description>
+    </function>
+    <function>
+        <name>isspace</name>
+        <parameter>char</parameter>
+        <inputExample>isspace' '</inputExample>
+        <outputExample>True</outputExample>
+        <description>Checks if the character is blank.</description>
+    </function>
+    <function>
+        <name>fst</name>
+        <parameter>(...,...)</parameter>
+        <inputExample>fst(3,4)</inputExample>
+        <outputExample>3</outputExample>
+        <description>Returns the first item form a tuple of two items.</description>
+    </function>
+    <function>
+        <name>snd</name>
+        <parameter>(...,...)</parameter>
+        <inputExample>snd(3,4)</inputExample>
+        <outputExample>4</outputExample>
+        <description>Returns the second item from a tuple of two items.</description>
+    </function>
+    <function>
+        <name>min2</name>
+        <parameter>... ...</parameter>
+        <inputExample>min2 2 5</inputExample>
+        <outputExample>2</outputExample>
+        <description>Returns the lowest value of two.</description>
+    </function>
+    <function>
+        <name>max2</name>
+        <parameter>... ...</parameter>
+        <inputExample>max2 2 5</inputExample>
+        <outputExample>5</outputExample>
+        <description>Returns the highest value of two.</description>
+    </function>
+    <function>
+        <name>exp</name>
+        <parameter>num</parameter>
+        <inputExample>exp 1</inputExample>
+        <outputExample>2.71828</outputExample>
+        <description>Exponential function: 2.71828^number.</description>
+    </function>
+    <function>
+        <name>log</name>
+        <parameter>num</parameter>
+        <inputExample>log 2</inputExample>
+        <outputExample>0.693147</outputExample>
+        <description>Log of a number.</description>
+    </function>
+    <function>
+        <name>cos</name>
+        <parameter>num</parameter>
+        <inputExample>cos 90</inputExample>
+        <outputExample>-0.448074</outputExample>
+        <description>Cosinus of a number.</description>
+    </function>
+    <function>
+        <name>sin</name>
+        <parameter>num</parameter>
+        <inputExample>sin 90</inputExample>
+        <outputExample>0.893997</outputExample>
+        <description>Sinus of a number.</description>
+    </function>
+    <function>
+        <name>pi</name>
+        <parameter></parameter>
+        <inputExample>pi</inputExample>
+        <outputExample>3.15149</outputExample>
+        <description>Returns n(pi).</description>
+    </function>
+    <function>
+        <name>atan</name>
+        <parameter>num</parameter>
+        <inputExample>atan 1</inputExample>
+        <outputExample>0.785398</outputExample>
+        <description>Returns the inverse tangent of a value radians.</description>
+    </function>
+    <function>
+        <name>time</name>
+        <parameter></parameter>
+        <inputExample>time</inputExample>
+        <outputExample>True/False</outputExample>
+        <description>Switches the display for timing in output to on/off.</description>
+    </function>
+    <function>
+        <name>timedate</name>
+        <parameter></parameter>
+        <inputExample>timedate</inputExample>
+        <outputExample>(7,36,18,15,5,2013)</outputExample>
+        <description>Return the datetime in a tuple (sec, min, hour, day, month, year).</description>
+    </function>
 </functions>
