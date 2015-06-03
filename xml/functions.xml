@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <functions type="array">
     <function>
-        <name>hoi</name>
-        <parameter>doie</parameter>
-        <inputExample>ag</inputExample>
-        <outputExample>asdf</outputExample>
-        <description>ads</description>
+        <name>Name</name>
+        <parameter>Parameter</parameter>
+        <inputExample>Input Example</inputExample>
+        <outputExample>Output Example</outputExample>
+        <description>Description</description>
     </function>
 	<function>
 		<name>abs</name>
