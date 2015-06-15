@@ -203,7 +203,7 @@
                             <div role="tabpanel" class="tab-pane active" id="console">
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control" id="input" disabled onkeyup="submitConsoleInput(this.value)">
+                                        <input type="text" class="form-control" id="input" disabled onkeyup="submitConsoleInput(event, this.value)">
                                         <textarea id="output" class="form-control" rows="8" readonly></textarea>
                                     </div>
                                     <div class="col-md-2">

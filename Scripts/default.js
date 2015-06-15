@@ -239,7 +239,7 @@ function saveEditorToFile(filename)
 
 var commandsArray = new Array();
 var commandsArrayIndex = 0;
-function submitConsoleInput($value){
+function submitConsoleInput(event, $value){
     var input = $('#input');
 
     switch (event.keyCode) {
