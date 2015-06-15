@@ -28,4 +28,123 @@
 		<outputExample>3</outputExample>
 		<description>Division. Returns the division of its first operand by its second.</description>
 	</function>
+    <function>
+        <name>^</name>
+        <parameter>num ^ num</parameter>
+        <inputExample>2^4</inputExample>
+        <outputExample>16</outputExample>
+        <description>Exponentiation. Raises its fist operand to the power of its second.</description>
+    </function>
+    <function>
+        <name>/\</name>
+        <parameter>bool /\ bool</parameter>
+        <inputExample>True /\ False</inputExample>
+        <outputExample>False</outputExample>
+        <description>Logic AND operator. Returns True if the first operand and second are True.</description>
+    </function>
+    <function>
+        <name>\/</name>
+        <parameter>bool \/ bool</parameter>
+        <inputExample>True \/ False</inputExample>
+        <outputExample>True</outputExample>
+        <description>Logic OR operator. Returns True if the first operand and/or second are True.</description>
+    </function>
+    <function>
+        <name>mod</name>
+        <parameter>num mod num</parameter>
+        <inputExample>9 mod 2</inputExample>
+        <outputExample>1</outputExample>
+        <description>Modulation. Returns the remainder after dividing its first operand with its second.</description>
+    </function>
+    <function>
+        <name>%</name>
+        <parameter>num % num</parameter>
+        <inputExample>9 mod 2</inputExample>
+        <outputExample>1</outputExample>
+        <description>Modulation. Returns the remainder after dividing its first operand with its second.</description>
+    </function>
+    <function>
+        <name>=</name>
+        <parameter>...=...</parameter>
+        <inputExample>"amanda"="amanda"</inputExample>
+        <outputExample>True</outputExample>
+        <description>Equality operator. Returns true if the first operand is equal to the second.</description>
+    </function>
+    <function>
+        <name>=</name>
+        <parameter>...=...</parameter>
+        <inputExample>A=25</inputExample>
+        <outputExample></outputExample>
+        <description>Assignment operator. A is now equal to the value 25.</description>
+    </function>
+    <function>
+        <name>~</name>
+        <parameter>~bool</parameter>
+        <inputExample>~(2=1)</inputExample>
+        <outputExample>True</outputExample>
+        <description>Logical negation operator. It negates its operand. It returns True if and only if its operand is False.</description>
+    </function>
+    <function>
+        <name>~=</name>
+        <parameter>...~=...</parameter>
+        <inputExample>1~=3</inputExample>
+        <outputExample>True</outputExample>
+        <description>Inequality operator. Returns true if the first operand is NOT equal to the second.</description>
+    </function>
+    <function>
+        <name>&#62;</name>
+        <parameter>...&#62;...</parameter>
+        <inputExample>5&#62;4</inputExample>
+        <outputExample>True</outputExample>
+        <description>"Greater than" relational operator. Returns True if the first operand is greater than the second.</description>
+    </function>
+    <function>
+        <name>&#60;</name>
+        <parameter>....&#60;...</parameter>
+        <inputExample>5&#60;4</inputExample>
+        <outputExample>False</outputExample>
+        <description>"Less than" relational operator. Returns True if the first operand is less than the second.</description>
+    </function>
+    <function>
+        <name>&#62;=</name>
+        <parameter>...&#62;=...</parameter>
+        <inputExample>5&#62;=2</inputExample>
+        <outputExample>True</outputExample>
+        <description>"Greater than or equal" relational operator. Returns True if the first operand is greater of equal to the second.</description>
+    </function>
+    <function>
+        <name>&#60;=</name>
+        <parameter>...&#62;=...</parameter>
+        <inputExample>2 &#62 2</inputExample>
+        <outputExample>True</outputExample>
+        <description>"Less than or equal" relational operator. Returns True if the firs operand is less than or equal to the second.</description>
+    </function>
+    <function>
+        <name>++</name>
+        <parameter>[...]++[...]</parameter>
+        <inputExample>[4,3,5]++[1,2]</inputExample>
+        <outputExample>[4,3,5,1,2]</outputExample>
+        <description>Adds second list to the first.</description>
+    </function>
+    <function>
+        <name>--</name>
+        <parameter>[...]--[...]</parameter>
+        <inputExample>[1,2,3,4,5]--[2,3,4]</inputExample>
+        <outputExample>[1,5]</outputExample>
+        <description>Removes second list from the first.</description>
+    </function>
+    <function>
+        <name>:</name>
+        <parameter>... : [...]</parameter>
+        <inputExample>9 : [1,4,5]</inputExample>
+        <outputExample>[9,1,4,5]</outputExample>
+        <description>Adds a value to the front of the list.</description>
+    </function>
+    <function>
+        <name>::</name>
+        <parameter>(expression) ::</parameter>
+        <inputExample>1 = 3 ::</inputExample>
+        <outputExample>bool</outputExample>
+        <description>Returns the type of an expression.</description>
+    </function>
 </functions>
