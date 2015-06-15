@@ -346,18 +346,67 @@
         <description>Splits the list in two at the specific index.</description>
     </function>
     <function>
-        <name>splitwhile</name>
+        <name>Splitwhile</name>
         <parameter>(bool) [...]</parameter>
         <inputExample>splitwhile (&#60;6) [1..10]</inputExample>
         <outputExample>([1,2,3,4,5],[6,7,8,9,10])</outputExample>
         <description>Splits the list in two when the expression becomes false.</description>
     </function>
     <function>
-        <name></name>
-        <parameter></parameter>
-        <inputExample></inputExample>
-        <outputExample></outputExample>
-        <description></description>
+        <name>sort</name>
+        <parameter>[...]</parameter>
+        <inputExample>sort[1,4,2,3]</inputExample>
+        <outputExample>[1,2,3,4]</outputExample>
+        <description>Sorts the list.</description>
+    </function>
+    <function>
+        <name>mergeSort</name>
+        <parameter>[...]</parameter>
+        <inputExample>mergeSort[1,4,2,3]</inputExample>
+        <outputExample>[1,2,3,4]</outputExample>
+        <description>Sort the list by merging.</description>
+    </function>
+    <function>
+        <name>reverse</name>
+        <parameter>[...]</parameter>
+        <inputExample>revers[1,2,3]</inputExample>
+        <outputExample>[3,2,1]</outputExample>
+        <description>Returns the list in it's reversed order.</description>
+    </function>
+    <function>
+        <name>nodup</name>
+        <parameter>[...]</parameter>
+        <inputExample>nodup[1,2,2,3]</inputExample>
+        <outputExample>[1,2,3]</outputExample>
+        <description>Returns the list after removing duplicates.</description>
+    </function>
+    <function>
+        <name>map</name>
+        <parameter>function[...]</parameter>
+        <inputExample>map reverse["live","star"]</inputExample>
+        <outputExample>["evil","rats"]</outputExample>
+        <description>Returns a list constructed by applying a function to all items in the list.</description>
+    </function>
+    <function>
+        <name>lines</name>
+        <parameter>[char]</parameter>
+        <inputExample>lines "abc"</inputExample>
+        <outputExample>["abc"]</outputExample>
+        <description>Puts a string inside a list.</description>
+    </function>
+    <function>
+        <name>word</name>
+        <parameter>[char]</parameter>
+        <inputExample>word['a','b','c']</inputExample>
+        <outputExample>["abc"]</outputExample>
+        <description>Puts a string inside a list.</description>
+    </function>
+    <function>
+        <name>unlines</name>
+        <parameter>[char]</parameter>
+        <inputExample>unlines["abc"]</inputExample>
+        <outputExample>"abc"</outputExample>
+        <description>Takes the string outside the list.</description>
     </function>
     <function>
         <name>coordsToString</name>
@@ -386,5 +435,54 @@
         <inputExample>cjustify 3 "a"</inputExample>
         <outputExample>" a "</outputExample>
         <description>Adds length to the string if necessary, and centers the string.</description>
+    </function>
+    <function>
+        <name>rep</name>
+        <parameter>... num</parameter>
+        <inputExample>rep "ha" 3</inputExample>
+        <outputExample>["ha","ha","ha"]</outputExample>
+        <description>Creates a list containing X times a specific value.</description>
+    </function>
+    <function>
+        <name>nat</name>
+        <parameter>num num</parameter>
+        <inputExample>nat 1 10</inputExample>
+        <outputExample>[1,2,3,4,5,6,7,8,9,10]</outputExample>
+        <description>Creates a list of numbers ranging from the first argument to the second.</description>
+    </function>
+    <function>
+        <name>nats</name>
+        <parameter>num</parameter>
+        <inputExample>nats 100</inputExample>
+        <outputExample>[100,101,102,103,104...]</outputExample>
+        <description>Creates an endless list of numbers, starting from the specific number.</description>
+    </function>
+    <function>
+        <name>gennat</name>
+        <parameter>num num num</parameter>
+        <inputExample>gennat 1 4 20</inputExample>
+        <outputExample>[1,4,7,10,13,16,19]</outputExample>
+        <description>Creats a list of numbers ranging from num1 to num3, using steps of num2 - num1.</description>
+    </function>
+    <function>
+        <name>fwrite</name>
+        <parameter>[char] [char]</parameter>
+        <inputExample>fwrite "a" "Hello"</inputExample>
+        <outputExample>True</outputExample>
+        <description>Creates a functionn (arg1) and assigns a string (arg2) to it.</description>
+    </function>
+    <function>
+        <name>fappend</name>
+        <parameter>[char] [char]</parameter>
+        <inputExample>fappend "a" "World!"</inputExample>
+        <outputExample>True</outputExample>
+        <description>Appends a string (arg2) to the value of the function (arg1).</description>
+    </function>
+    <function>
+        <name>fread</name>
+        <parameter>[char]</parameter>
+        <inputExample>fread "a"</inputExample>
+        <outputExample>"Hello World"</outputExample>
+        <description>Returns the value of the function that has been created by using 'fwrite'.</description>
     </function>
 </functions>

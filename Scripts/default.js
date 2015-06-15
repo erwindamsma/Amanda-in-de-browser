@@ -406,6 +406,7 @@ function loadXml(fileName) {
 
 function displayXML (filename){
     //xmlDoc = loadXml("functions.xml");
+
     xmlDoc = loadXml(filename);
     var modalTitle = ""
 
