@@ -115,7 +115,7 @@
     <function>
         <name>&#60;=</name>
         <parameter>...&#62;=...</parameter>
-        <inputExample>2 &#62 2</inputExample>
+        <inputExample>2 &#62; 2</inputExample>
         <outputExample>True</outputExample>
         <description>"Less than or equal" relational operator. Returns True if the firs operand is less than or equal to the second.</description>
     </function>
