@@ -9,6 +9,7 @@
     include("SDKs/dropbox.php");
 
     $functionFileLines = "";
+    //Handle Dropbox files
     if (isset($_GET['loadDBFile'])){
         $f = fopen($_SESSION['accountInfo']['uid'] . $_GET['loadDBFile'], 'w+r');
         $_SESSION['dbxClient']->getFile('/' . $_GET['loadDBFile'], $f);
@@ -44,8 +45,7 @@
         <!-- Custom -->
         <link rel="stylesheet" href="style.css">
 
-        <!-- Bootstrap core JavaScript
-        Place at the end of the document so the pages load faster -->
+        <!-- Bootstrap core JavaScript -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
@@ -117,7 +117,7 @@
                     <div class="btn-group">
                         <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/functions.xml')">Functions</button>
                         <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/operators.xml')">Operators</button>
-                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayXML('xml/about.xml')">About</button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#helpModal" onclick="displayAbout()">About</button>
                     </div>
                     <div class="btn-group">
                         <input class="form-control" onchange="fileNameChange();" value="untitiled.ama" type="text" name="saveFileName" id="saveFileName"/>

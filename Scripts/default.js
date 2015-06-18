@@ -2,20 +2,14 @@ errorcount = 0;
 messageQueue = [];
 messageLength = 1500;
 
-window.onParseError = function(type, linenr, columnnr)
-{
-    if(linenr != -1 && columnnr != -1)
-        showError("<b>Syntax error!</b><br>At line: "+linenr+" column: " + columnnr+"<br>"+type);
-    else
-        showError("<b>Syntax error!</b><br>"+type);
-}
-
+//Add an DOM element to the message queue
 function addToMessageQueue(element)
 {
     messageQueue[messageQueue.length] = element;
     if(messageQueue.length == 1) functionNexMessage();
 }
 
+//Check if a new message needs to be shown. If so show it.
 function functionNexMessage(){
     if(messageQueue.length == 0) return;
 
@@ -37,6 +31,7 @@ function functionNexMessage(){
 
 }
 
+//Create a new message and add it to the message queue.
 function newmessage(classname, message)
 {
     var element = $("<div></div>").addClass(classname).addClass("amandaJSMessage");
@@ -46,10 +41,9 @@ function newmessage(classname, message)
     element.html(""+message+"");
 
     addToMessageQueue(element);
-
 }
 
-
+//Add an error message to the error list.
 function showError(message)
 {
     var element = $("<div></div>").addClass("bg-danger").addClass("amandaJSError");
@@ -70,6 +64,7 @@ function showError(message)
     $("#errorListTabTitle").html("Error List ("+errorcount+")");
 }
 
+//Clear the error list.
 function clearErrors()
 {
     $("#errorArea").html("");
@@ -77,22 +72,20 @@ function clearErrors()
     $("#errorListTabTitle").html("Error List ("+errorcount+")");
 }
 
+//Add an info message to the message queue
 function showInfo(message)
 {
     newmessage("bg-info", "<span class='glyphicon glyphicon-exclamation-sign'></span> "+message, 4000);
 }
 
+//Add a waring message to the message queue
 function showWarning(message)
 {
     newmessage("bg-info", message, 4000);
 }
 
-function fadeMessageAfterTimeout(element)
-{
-
-
-}
-
+//Method for loading a file into AmandaJS
+//Uses Module.ccall to call the compiled C function 'Load'
 function AmandaJSLoad(filepath)
 {
     clearErrors();
@@ -105,6 +98,7 @@ function AmandaJSLoad(filepath)
     initAutoComplete($("#input"));
 }
 
+//Create a temporary file in the virutal file system with $fileContent as filedata.
 function loadTempFile($fileContent)
 {
     filepath = "/tmp";
@@ -122,18 +116,10 @@ function loadTempFile($fileContent)
 //Saves the file selected in the open file modal to the server, and loads this file into the codemirror editor
 function uploadAndLoadFile()
 {
-    var formData = new FormData($('#uploadform')[0]);
+    var formData = new FormData($('#uploadform')[0]); //#uploadform is a hidden form.
     $.ajax({
         url: 'AmandaJS/uploadAMA.php',  //Server script to process data
         type: 'POST',
-        /*xhr: function() {  // Custom XMLHttpRequest
-         var myXhr = $.ajaxSettings.xhr();
-         if(myXhr.upload){ // Check if upload property exists
-         myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
-         }
-         return myXhr;
-         },*/
-        // Form data
         data: formData,
         //Options to tell jQuery not to process data or worry about content-type.
         cache: false,
@@ -157,6 +143,7 @@ function uploadAndLoadFile()
     });
 }
 
+//Used to instigate the file browser in the hidden form.
 function performClick(elemId) {
     var elem = document.getElementById(elemId);
     if(elem && document.createEvent) {
@@ -166,54 +153,7 @@ function performClick(elemId) {
     }
 }
 
-function loadDropboxFile()
-{
-    conf = true;
-
-    if(functionEditor.getValue().length > 0)
-    {
-        conf = confirm("Unsaved changes will be lost, are you sure?");
-    }
-    if(conf) {
-        options = {
-
-            // Required. Called when a user selects an item in the Chooser.
-            success: function (files) {
-                showInfo("<b>Started Loading:</b><br>" + files[0].link);
-                $.ajax({
-                    url: "AmandaJS/dropboxproxy.php?u=" + files[0].link,
-                    type: 'GET',
-                    beforeSend: function (xhr) {
-                        xhr.overrideMimeType("text/plain; charset=x-user-defined");
-                    },
-                    success: function (data) {
-
-                        functionEditor.setValue(data);//Set the editor content
-
-
-                        if (FS.findObject("/tmp/uploaded.ama") != null) FS.unlink("/tmp/uploaded.ama");//Remove the tmp file
-                        Module['FS_createDataFile']("/tmp", "uploaded.ama", data, true, true);
-
-                        AmandaJSLoad("/tmp/uploaded.ama");
-
-                        showInfo("<b>Finished Loading:</b><br>" + files[0].link);
-                    }
-                });
-            },
-            cancel: function () {
-            },
-            // Optional. "preview" (default) is a preview link to the document for sharing,
-            // "direct" is an expiring link to download the contents of the file. For more
-            // information about link types, see Link types below.
-            linkType: "direct", // or "direct"
-            multiselect: false, // or true
-            extensions: ['.txt', '.ama']
-        };
-        Dropbox.choose(options);
-    }
-}
-
-//saveLocal bool, filename string
+//Save the functionEditor content to a file, and download it via an hidden iFrame.
 function saveEditorToFile(filename)
 {
     var jqxhr = $.post( "AmandaJS/saveEditor.php", { editorValue: functionEditor.getValue(), fileName: filename })
@@ -237,8 +177,11 @@ function saveEditorToFile(filename)
         });
 }
 
-var commandsArray = new Array();
-var commandsArrayIndex = 0;
+var commandsArray = new Array(); //Command history array
+var commandsArrayIndex = 0; //Initialize the current history index on 0;
+
+//Submits the content of the console input to AmandaJS.
+//Also checks if up or down arrow where pressed to browse through command history
 function submitConsoleInput(event, $value){
     var input = $('#input');
 
@@ -250,6 +193,7 @@ function submitConsoleInput(event, $value){
             commandsArrayIndex = commandsArray.length;
 
             switch ($value) {
+                //If submitted command is 'time' toggle the button.
                 case 'time':
                     toggleTime();
                     break;
@@ -258,12 +202,14 @@ function submitConsoleInput(event, $value){
                     break;
             }
             break;
+
+        //Handle command history
         case 38: //arrow up
             if (commandsArrayIndex > 0){
                 commandsArrayIndex--;
             }
             input.val(commandsArray[commandsArrayIndex]);
-            input.caretToEnd();
+            input.caretToEnd();//Place the text cursor at the end of the line.
             break;
         case 40: //arrow down
             if (commandsArrayIndex < commandsArray.length){
@@ -275,6 +221,7 @@ function submitConsoleInput(event, $value){
 
 }
 
+//Clear the functionEditor.
 function clearEditor()
 {
     conf = true;
@@ -296,10 +243,9 @@ function clearEditor()
     }
 }
 
-keywords = ["where","where","if","else","True","False","otherwise"];
+keywords = ["where","where","if","else","True","False","otherwise"]; //Array containing the Amanda keywords
 
-
-
+//Checks if a string starts with a Amanda string.
 function beginsWithKeyword(str)
 {
     for(j = 0 ; j < keywords.length; j++)
@@ -309,6 +255,7 @@ function beginsWithKeyword(str)
     return false;
 }
 
+//Get all the functionnames in the function editor.
 function getFunctions()
 {
     lines = functionEditor.getValue().split("\n");
@@ -317,24 +264,17 @@ function getFunctions()
     {
         if(lines[i].charAt(0) != ' ' && lines[i].indexOf("|") != 0)
         {
-
+            //If the string does not start with a keyword and does contain a equals sign.
             if(!beginsWithKeyword(lines[i]) && lines[i].indexOf("=") != -1)
             {
                 lineSplit = lines[i].split("=");
-                lineSplit = lineSplit[0].split(" ");
-                //Check if already added
+                lineSplit = lineSplit[0].split(" "); //Get content before equals sign, and split on spaces
+
                 exsists = false;
-                /*for(k = 0; k < functions.length; k++)
-                {
-                    if(functions[k].functionName == lineSplit[0]){
-                        exsists = true;
-                        break;
-                    }
-                }*/
-                if(!exsists) {
+                if(!exsists) { //Check if already added
                     tmp = {};
-                    tmp.functionName = lineSplit[0];
-                    tmp.arguments = lineSplit.slice(1, lineSplit.length - 1).filter(Boolean);
+                    tmp.functionName = lineSplit[0]; //Function name will be the first element in the array split on spaces
+                    tmp.arguments = lineSplit.slice(1, lineSplit.length - 1).filter(Boolean); //Arguments are the words after it, .filter to filter out empty entries.
                     functions[functions.length] = tmp;
                 }
 
@@ -342,10 +282,10 @@ function getFunctions()
         }
     }
 
-
     return functions;
 }
 
+//Initialize jQueryUI autocomplete with functions in the code editor.
 function initAutoComplete(element)
 {
     functionObjects = getFunctions();
@@ -365,14 +305,13 @@ function initAutoComplete(element)
         availableTags[q] = tmpObj;
     }
 
-    //console.log(availableTags);
-
     $( element ).autocomplete({
         source: availableTags
     });
 
 }
 
+//Sends the 'time' command to AmandaJS and toggles the time button color
 function toggleTime(){
     interpret('time');
     $("#toggleTime").toggleClass('active').toggleClass('btn-success');
@@ -380,6 +319,8 @@ function toggleTime(){
     else showWarning("<span class='glyphicon glyphicon-time'></span> Turned off timing");
 }
 
+//Calls the Amanda 'Interpret' function with value as argument.
+//Used to interpret commands in Amanda
 function interpret(value){
     Module.ccall('Interpret', // name of C function
         'void', // return type
@@ -387,8 +328,7 @@ function interpret(value){
         [value]); // arguments
 }
 
-
-
+//Loads and parses XML file from an URL
 function loadXml(fileName) {
     if (window.XMLHttpRequest)
     {
@@ -403,13 +343,24 @@ function loadXml(fileName) {
     return xhttp.responseXML;
 }
 
+//Display the About content in 'help-modal'
+function displayAbout()
+{
+    //Content of the about modal
+    var aboutText = "<p>AmandaJS is the online IDE for the functional programming language Amanda. Amanda and its IDE where first developed by Dick Bruin, teacher at the NHL Hogeschool. AmandaJS is developed by Students from the NHL Hogeschool as a school project. The name AmandaJS refers to the programming language on which AmandaJS is based, JavaScript.</p><p>The purpose of the project which instigated AmandaJS was the research on Emscripten. Emscripten is a cross-compiler which can convert C and C++ to JavaScript making it suitable for the web. More information on Emscripten can be found at https://kripken.github.io/emscripten-site/index.html.</p><p>Erwin Damsma, Sander Jaasma, Jens Vossnack</p><p>June 2015</p>";
 
+    document.getElementById('help-modal').innerHTML = aboutText;
+    $('#exampleModalLabel').html("About");
+}
+
+//Display the contents of a XML file in the help-modal.
 function displayXML (filename){
-    //xmlDoc = loadXml("functions.xml");
 
+    //Load the content of the XML file
     xmlDoc = loadXml(filename);
-    var modalTitle = ""
+    var modalTitle = "";
 
+    //Check which file has been loaded
     if(filename === 'xml/functions.xml')
     {
         modalTitle = "Functions";
@@ -420,16 +371,18 @@ function displayXML (filename){
         modalTitle = "About"
     }
 
+    //Clear the modal.
     document.getElementById('help-modal').innerHTML = "";
     document.getElementById('exampleModalLabel').innerHTML = "";
 
+    //Get metadata of the file
     _name = xmlDoc.getElementsByTagName("name");
     _parameter = xmlDoc.getElementsByTagName("parameter");
     _inputExample = xmlDoc.getElementsByTagName("inputExample");
     _outputExample = xmlDoc.getElementsByTagName("outputExample");
     _description = xmlDoc.getElementsByTagName("description");
 
-
+    //Loop through the XML elements and add content to modal.
     for (i = 0; i < _name.length; i++)
     {
         var element = $('<tr></tr>').addClass("row-help-modal");
@@ -442,10 +395,12 @@ function displayXML (filename){
 
         $('#help-modal').append(element);
     }
-    $('#exampleModalLabel').append(modalTitle);
+    $('#exampleModalLabel').append(modalTitle); //Set the modal title
 }
 
+//Save the functionEditor to dropbox
 function saveToDropbox(amatext) {
+    //Call dropboxupload.php via an Ajax call
     var request = $.post("dropboxupload.php", {
         editorValue: amatext,
         fileName: $('#saveFileName').val() });
@@ -459,6 +414,7 @@ function saveToDropbox(amatext) {
     });
 }
 
+//Called when filename is changed, checks if extension is .ama, if not appends it.
 function fileNameChange()
 {
     //If the value of saveFileName input doesn't have '.ama' at the end, append it.

@@ -74,7 +74,7 @@
         <name>=</name>
         <parameter>...=...</parameter>
         <inputExample>A=25</inputExample>
-        <outputExample></outputExample>
+        <outputExample> </outputExample>
         <description>Assignment operator. A is now equal to the value 25.</description>
     </function>
     <function>
