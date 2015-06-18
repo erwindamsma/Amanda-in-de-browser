@@ -220,17 +220,6 @@
                 </div>
             </div>
 
-      <!--      <script>
-                $('#helpModal').on('show.bs.modal', function (event) {
-                    var button = $(event.relatedTarget)
-                    var category = button.data('whatever')
-                    var cat = category.toLowerCase();
-                    var modal = $(this)
-                    modal.find('.modal-title').text(category)
-                    modal.find('.modal-body div .displayTest').text(loadXml(cat))
-                })
-            </script> -->
-
             <!--Amanda js code which emscripten normally puts in this page itself-->
             <script type='text/javascript' src="Scripts/AmandaJSpage.js"></script>
 

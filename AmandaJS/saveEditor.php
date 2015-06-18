@@ -4,6 +4,8 @@
  * User: Jens
  * Date: 12-5-2015
  * Time: 13:36
+ *
+ * Save the editor to a temp file to be downloaded.
  */
 
 session_start();
@@ -30,7 +32,7 @@ if(isset($_POST['editorValue']) && isset($_POST['fileName']))
         $dir .= $parts[$i] . "/";
     }
 
-    die("OK:".$_SERVER['HTTP_HOST'].$dir.$fileUrlLocation."downloadama.php?filename=".$_POST['fileName']);
+    die("OK:".$_SERVER['HTTP_HOST'].$dir.$fileUrlLocation."downloadama.php?filename=".$_POST['fileName']); //set the responsetext to OK: followed by the url of the file.
 }
 else{
     die("ERROR");

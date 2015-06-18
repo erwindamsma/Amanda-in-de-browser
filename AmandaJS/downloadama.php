@@ -4,6 +4,8 @@
  * User: Jens
  * Date: 21-5-2015
  * Time: 14:24
+ *
+ * Used to download an ama file with a specified filename.
  */
 session_start();
 
@@ -24,14 +26,11 @@ if(isset($_GET['filename']))
     for ($i = 0; $i < count($parts) - 2; $i++) {
         $dir .= $parts[$i] . "/";
     }
-
-   // die("OK:".$_SERVER['HTTP_HOST'].$dir.$fileUrlLocation.$fileName);
-
     $filePath = $_SERVER['HTTP_HOST'].$dir.$fileUrlLocation.$fileName;
 
     echo readfile("http://". $filePath);
 
-    unlink($fileName);
+    unlink($fileName); //Remove the temp file.
 }
 
 
