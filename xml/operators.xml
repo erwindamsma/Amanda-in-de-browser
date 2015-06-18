@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <functions>
+    <function>
+        <name>Name</name>
+        <parameter>Parameter</parameter>
+        <inputExample>Input Example</inputExample>
+        <outputExample>Output Example</outputExample>
+        <description>Description</description>
+    </function>
 	<function>
 		<name>+</name>
 		<parameter>num + num</parameter>
